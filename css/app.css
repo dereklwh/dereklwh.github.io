@@ -1,0 +1,181 @@
+/* Reset default margin and padding for all elements */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Set a default font family and size for the entire document */
+body {
+  font-family: "Yu Gothic Medium";
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left
+}
+
+h2 {
+  font-family: "adobe-caslon-pro";
+  font-size: 39px;
+  text-align: center
+}
+/* Style the navigation bar */
+nav {
+    background-color: #A2B899;
+    color: #E0E2DC;
+    text-align: center; /* Center the content of the navigation bar */
+    padding: 10px;
+  }
+  
+  nav h1 {
+    font-size: 24px;
+  }
+  
+  nav ul {
+    list-style: none;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #E0E2DC;
+  }
+  
+  /* Style the hero section */
+  header.hero {
+    background-image: url("C:/Users/Derek/Derek's Website/mountainbackground.jpg");
+    background-size: cover; /* Scales the image to cover the entire container */
+    background-position: center; /* Center the background image within the container */
+    color: #E0E2DC;
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  header.hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  header.hero p {
+    font-size: 18px;
+    margin-top: 20px; /* Add margin to create space below the heading */
+  }
+  
+  header.hero .btn {
+    display: block; /* Make the button a block element to occupy the full width */
+    width: 200px; /* Set a fixed width for the button (adjust as needed) */
+    margin: 20px auto; /* Center the button horizontally */
+    background-color: #A2B899;
+    color: #E0E2DC;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+/* Style the sections with class "container" */
+section.container {
+  max-width: 1000px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 40px 20px;
+  word-wrap: break-word;
+}
+
+section.container h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+section.container p {
+  font-size: 5px;
+  line-height: 1.6;
+  text-align: center; /* Center the text within the container */
+}
+
+/* Style the container_desc section */
+section.container_desc {
+  max-width: 800px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 40px 20px;
+  word-wrap: break-word;
+  background-color: #ff0000; /* Background color for the container */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+section.container_desc p {
+  font-size: 10px; /* Adjust the font size as needed */
+  line-height: 1.6;
+  text-align: center;
+  color: #333; /* Text color for the paragraph */
+  background-color: #ff0000; /* Background color for the paragraph */
+}
+  
+/* Style the footer */
+footer {
+  background-color: #A2B899;
+  color: #E0E2DC;
+  text-align: center;
+  padding: 20px;
+} 
+
+section.about {
+max-width: 800px; /* Adjust the maximum width as needed */
+margin: 0 auto; /* Center the container horizontally */
+padding: 40px 20px;
+word-wrap: break-word;
+background-color: #ffff; /* Background color for the container */
+border-radius: 10px; /* Rounded corners */
+}
+
+section.about h2 {
+font-size: 10px;
+margin-bottom: 10px;
+}
+
+section.about p {
+font-size: 18px;
+line-height: 1.6;
+text-align: center; /* Center the text within the container */
+}
+
+section.about_desc {
+max-width: 500px; /* Adjust the maximum width as needed */
+margin: 0 auto; /* Center the container horizontally */
+padding: 40px 20px;
+word-wrap: break-word;
+background-color: #ff0000; /* Background color for the container */
+border-radius: 10px; /* Rounded corners */
+}
+
+section.about_desc p {
+font-size: 25px;
+line-height: 1.6;
+text-align: center; /* Center the text within the container */
+}
+
+  /* Style links */
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body {
+    cursor: url("assets/cursor.png"), auto;
+  }
