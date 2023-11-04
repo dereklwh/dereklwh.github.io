@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Derek Huang - Personal Website</title>
+    <title>Derek's Website</title>
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
-    <script src="js/app.js"></script>
 </head>
-
 <body>
-    <!-- Navigation bar -->
-    <nav>
-        <div class="container">
-            <h1>Derek Huang</h1>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="container">
 
-    <!-- Header section -->
-    <header class="hero">
-        <div class="container">
-            <h2>Hey! I'm Derek</h2>
-            <p>Welcome to my website! MEOW</p>
-            <a href="#contact" class="btn">Get in touch</a>
-            <button onclick="alertButton()">CLICK ME</button>
+        <div class="top-side">
+            <nav>
+                <!-- Navigation links here -->
+                <ul>
+                    <li><a href="#">Landing</a></li>
+                    <li><a href="#">Name</a></li>
+                    <!-- Add other nav links here -->
+                </ul>
+            </nav>
+            <div class="landing-section">
+                <header>
+                    <div class="name-circle">
+                        <div class="name">
+                            Derek Huang
+                        </div>
+                        <p>Welcome to my humble abode</p>
+                        <button class="landing-button">Landing</button>
+                    </div>                
+                </header>
+            </div>
         </div>
-    </header>
 
-<!-- About section -->
-<section id="about">
-    <div class="about">
-        <h2>About Me</h2>
-        <div class="about_desc">
-            <p>Woof woof, i am a fourth year student at SffFU</p>
+        <div class="bottom-side">
+            <section class="experience">
+                <!-- Repeating experience blocks -->
+                <div class="experience-block">
+                    <img src="assets/mountainbackground.jpg" alt="Avatar">
+                    <h2>Projects</h2>
+                    <p>Description here. blah blah blah blah blah blah blah blah blah blah
+                        blah blah blah
+                    </p>
+                    <button>Read More</button>
+                </div>
+                <div class="experience-block">
+                    <img src="assets/mountainbackground.jpg" alt="Avatar">
+                    <h2>Projects</h2>
+                    <p>Description here</p>
+                    <button>Read More</button>
+                </div>
+                <div class="experience-block">
+                    <img src="assets/mountainbackground.jpg" alt="Avatar">
+                    <h2>Projects</h2>
+                    <p>Description here</p>
+                    <button>Read More</button>
+                </div>
+                <div class="experience-block">
+                    <img src="assets/mountainbackground.jpg" alt="Avatar">
+                    <h2>Projects</h2>
+                    <p>Description here</p>
+                    <button>Read More</button>
+                </div>
+                <!-- Repeat .experience-block for other blocks -->
+            </section>
+
+
         </div>
+        <footer>
+            <!-- Footer content here -->
+        </footer>
     </div>
-</section>
-
-    <!-- Portfolio section -->
-    <section id="portfolio">
-        <div class="container">
-            <h2>Portfolio</h2>
-            <!-- Showcase your projects, works, or anything you want to highlight -->
-        </div>
-    </section>
-
-    <!-- Contact section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>If you want to get in touch with me, feel free to use the form below or email me at [your@email.com].</p>
-            <!-- Add a contact form or other contact information -->
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Derek Huang. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>
