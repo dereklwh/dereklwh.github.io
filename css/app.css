@@ -1,6 +1,6 @@
 body {
   font-family: 'Yu Gothic Medium', sans-serif;
-  background-color: #2E5941;
+  background-color: #FFF9E9;
   color: #ffffff;
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,7 +23,7 @@ nav ul {
 nav li a {
   text-decoration: none;
   color: #ffffff;
-  padding: 10px 20px;
+  padding: 10px 50px;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
@@ -51,7 +51,8 @@ button {
   font-size: 36px; /* Increased size for emphasis */
   font-weight: bold;
   color: #2E5941; /* Darkened color for better contrast */
-  margin-bottom: 20px;
+  margin-top: 60px;
+  margin-bottom: 15px;
   text-align: center; /* Ensuring name is centered */
 }
 
@@ -69,9 +70,9 @@ button {
 }
 
 .name-circle p {
-  font-size: 20px; /* Adjusted font size */
+  font-size: 13px; /* Adjusted font size */
   line-height: 1.4;
-  margin: 0 10px;
+  margin: 10px;
   color: #2E5941; /* Darkened color for better contrast */
   text-align: center; /* Centered the text */
 }
@@ -80,9 +81,10 @@ button {
 .landing-button {
   position:absolute;
   bottom: 10%;
+  width: 150px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 15%
+  border-radius: 5%;
 }
 
 
@@ -100,29 +102,89 @@ button {
   background-position: center;
 }
 
+/* Style for section titles */
+.section-title {
+  font-size: 28px; /* Set font size for section titles */
+  color: #1E4031; /* Set color for section titles */
+  text-align: center; /* Center the titles */
+}
+
+/* Work Experience Section Styles */
+.work-experience {
+  background-color: #FFF9E9; /* Light background for the section */
+  padding: 40px 20px; /* Padding around the content, adjusted for the grid */
+}
+
+.work-experience-blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Creates a responsive grid */
+  gap: 20px; /* Space between the blocks */
+  margin-bottom: 40px; /* Space after the whole work experience blocks */
+}
+
+.work-experience-block {
+  background-color: #ffffff; /* White background for each block */
+  border: 1px solid #1E4031; /* Border color to match the section title */
+  border-radius: 10px; /* Rounded corners for the blocks */
+  padding: 20px; /* Padding inside each block */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.work-experience-block h2 {
+  color: #1E4031; /* Title color inside the block */
+  margin-bottom: 10px; /* Space below the title */
+}
+
+.work-experience-block p,
+.work-experience-block ul {
+  color: #2E5941; /* Text color for the paragraph and list */
+  font-size: 14px; /* Smaller font size for detail text */
+}
+
+.work-experience-block ul {
+  list-style-type: disc; /* Styled list for bullet points */
+  margin-left: 20px; /* Indent for the list */
+}
+
+
 .bottom-side {
   flex: 1;
   overflow-y: auto;
-  background-color: #1E4031;
+  background-color: #FFF9E9;
 }
 
-.experience {
-  display: flex;
-  justify-content: space-between;
+.project {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates two columns */
+  gap: 40px; /* Increased gap for better spacing */
+  padding: 20px; /* Adds padding inside the project section */
+  justify-content: center; /* Center the grid */
+  align-items: start; /* Align the items to start from the top */
+  margin-bottom: 40px; /* Adds space below the project section */
 }
 
-.experience-block {
-  width: 20%;
-  margin: 2.5%;
+.project-block {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   background-color: #55835F;
   text-align: center;
+  /* Added max-width to prevent blocks from being too wide on larger screens */
+  max-width: 400px; /* Adjust max-width as needed */
+  margin: auto; /* This will center the blocks in the grid area if they're less than max-width */
 }
 
-.experience-block img {
-  width: 100%;
-  border-radius: 0%;
+.project-block img {
+  width: 100%; /* Full width of the container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Match the border radius of the block */
 }
+
+.separator-line {
+  height: 4px; /* Thickness of the line */
+  background-color: #1E4031; /* Color of the line */
+  width: 80%; /* Width relative to the container */
+  margin: 10px auto; /* Center the line and add space above and below */
+}
+
 
