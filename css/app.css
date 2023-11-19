@@ -213,6 +213,7 @@ button {
   background-color: #1E4031; /* Color of the line */
   width: 80%; /* Width relative to the container */
   margin: 100px auto; /* Center the line and add space above and below */
+  transition-delay: 200ms;
 }
 
 .spacer {
@@ -237,7 +238,7 @@ button {
     opacity: 0;
     filter: blur(3px);
     transform: translateX(-100%);
-    transition: all 1s;
+    transition: ease-in all 1s;
   }
   
   .show {
