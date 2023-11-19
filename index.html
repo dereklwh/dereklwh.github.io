@@ -1,120 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Derek's Website</title>
-    <link rel="stylesheet" href="css/app.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/app.css" />
+    <script defer src="js/app.js"></script>
+  </head>
+  <body>
     <div class="container">
-
-        <div class="top-side">
+        <div class="landing-section">
             <nav>
                 <!-- Navigation links here -->
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
                     <!-- Add other nav links here -->
                 </ul>
             </nav>
-            <div class="landing-section">
-                <header>
-                    <div class="name-circle">
-                        <div class="name">
-                            Derek Huang
-                        </div>
-                        <p> Welcome to my website! I'm a fourth-year student at Simon Fraser University, 
-                            studying information systems in business and computer science. I am a lifelong learner interested
-                            all things tech, from software development and data analysis, to tinkering with PC hardware.
-                            Besides that, I like to spend my time in nature, watching hockey, listening to music, lifting weights, and
-                            building mechanical keyboards.
-                        </p>
-                        <button class="landing-button">Landing</button>
-                    </div>                
-                </header>
-            </div>
+            <header>
+              <section class="hidden">
+                <div class="name-circle">
+                  <div class="name">Derek Huang</div>
+                  <p>
+                    Welcome to my website! I'm a fourth-year student at Simon Fraser
+                    University, studying information systems in business and
+                    computer science. I am a lifelong learner interested all things
+                    tech, from software development and data analysis, to tinkering
+                    with PC hardware. Besides that, I like to spend my time in
+                    nature, watching hockey, listening to music, lifting weights,
+                    and building mechanical keyboards.
+                  </p>
+                  <button class="landing-button">Landing</button>
+                </div>
+              </section>
+            </header>
+      </div>
+
+      <div class="separator-line"></div>
+
+
+      <!-- Work Experience Section -->
+      <section class="work-experience">
+        <h1 class="section-title">Work Experience</h1>
+        <div class="work-experience-blocks">
+          <!-- Business Analyst Co-op -->
+          <div class="work-experience-block hidden">
+            <h2>Business Analyst Co-op</h2>
+            <p>D-Wave Systems - Burnaby, BC (09/2022 to 12/2022)</p>
+            <ul>
+              <li>
+                Executed user acceptance testing with tools like Salesforce and
+                Postman, creating training materials.
+              </li>
+              <li>
+                Designed PowerBI report pages for executive stakeholders,
+                showcasing newly tracked data.
+              </li>
+              <li>
+                Formulated a project charter template to enhance project
+                management processes.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Corporate Relations Coordinator -->
+          <div class="work-experience-block hidden">
+            <h2>Corporate Relations Coordinator</h2>
+            <p>
+              SFU Management Information Systems Association - Vancouver, BC
+              (09/2021 to 06/2022)
+            </p>
+            <ul>
+              <li>
+                Engaged in outreach through LinkedIn for partnerships and
+                sponsorships, initiating cold calls.
+              </li>
+              <li>
+                Facilitated onboarding of professional stakeholders for event
+                logistics via LinkedIn and email.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Business Operations Intern -->
+          <div class="work-experience-block hidden">
+            <h2>Business Operations Intern</h2>
+            <p>Schmear Naturals - Vancouver, BC (07/2020 to 11/2021)</p>
+            <ul>
+              <li>
+                Researched and redesigned inventory packing and tracking
+                processes for enhanced efficiency.
+              </li>
+              <li>
+                Maintained precise order, shipment forms, and inventory
+                documentation to streamline order shipments.
+              </li>
+              <li>
+                Managed daily operations using G Suite, Shopify, Etsy, and
+                Quickbooks.
+              </li>
+            </ul>
+          </div>
         </div>
+      </section>
 
+      <!-- line separator -->
+      <div class="separator-line"></div>
 
-        <!-- Work Experience Section -->
-        <section class="work-experience">
-            <h1 class="section-title">Work Experience</h1>
-            <div class="work-experience-blocks">
-            <!-- Business Analyst Co-op -->
-            <div class="work-experience-block">
-                <h2>Business Analyst Co-op</h2>
-                <p>D-Wave Systems - Burnaby, BC (09/2022 to 12/2022)</p>
-                <ul>
-                <li>Executed user acceptance testing with tools like Salesforce and Postman, creating training materials.</li>
-                <li>Designed PowerBI report pages for executive stakeholders, showcasing newly tracked data.</li>
-                <li>Formulated a project charter template to enhance project management processes.</li>
-                </ul>
-            </div>
-        
-            <!-- Corporate Relations Coordinator -->
-            <div class="work-experience-block">
-                <h2>Corporate Relations Coordinator</h2>
-                <p>SFU Management Information Systems Association - Vancouver, BC (09/2021 to 06/2022)</p>
-                <ul>
-                <li>Engaged in outreach through LinkedIn for partnerships and sponsorships, initiating cold calls.</li>
-                <li>Facilitated onboarding of professional stakeholders for event logistics via LinkedIn and email.</li>
-                </ul>
-            </div>
-        
-            <!-- Business Operations Intern -->
-            <div class="work-experience-block">
-                <h2>Business Operations Intern</h2>
-                <p>Schmear Naturals - Vancouver, BC (07/2020 to 11/2021)</p>
-                <ul>
-                <li>Researched and redesigned inventory packing and tracking processes for enhanced efficiency.</li>
-                <li>Maintained precise order, shipment forms, and inventory documentation to streamline order shipments.</li>
-                <li>Managed daily operations using G Suite, Shopify, Etsy, and Quickbooks.</li>
-                </ul>
-            </div>
-        
-            </div>
-        </section>
-
-        <!-- line separator -->
-        <div class="separator-line"></div>
-
-        <div class="bottom-side">
+      <div class="bottom-side">
         <h1 class="section-title">Projects</h1>
-            <section class="project">
-                <!-- Repeating project blocks -->
-                <div class="project-block">
-                    <img src="assets/mountainbackground.jpg" alt="Avatar">
-                    <h2>Projects</h2>
-                    <p>Description here.
-                    </p>
-                    <button>Read More</button>
-                </div>
-                <div class="project-block">
-                    <img src="assets/mountainbackground.jpg" alt="Avatar">
-                    <h2>Projects</h2>
-                    <p>Description here</p>
-                    <button>Read More</button>
-                </div>
-                <div class="project-block">
-                    <img src="assets/mountainbackground.jpg" alt="Avatar">
-                    <h2>Projects</h2>
-                    <p>Description here</p>
-                    <button>Read More</button>
-                </div>
-                <div class="project-block">
-                    <img src="assets/mountainbackground.jpg" alt="Avatar">
-                    <h2>Projects</h2>
-                    <p>Description here</p>
-                    <button>Read More</button>
-                </div>
-                <!-- Repeat .project-block for other blocks -->
-            </section>
+        <!-- Repeating project blocks -->
+        <div class="project-blocks">
+          <div class="project-block hidden">
+            <img src="assets/hospital_bot.png" alt="Project Image" />
+            <h2>Hospital Bot</h2>
+            <p>"Dead City Chronicles" is an engaging 2D maze game I developed using Java. 
+              Players navigate through intricate mazes within a post-apocalyptic city while
+               avoiding relentless zombies.</p>
+            <button>Read More</button>
+          </div>
+          <div class="project-block hidden">
+            <img src="assets/game_project.png" alt="Project Image" />
+            <h2>Dead City Chronicles</h2>
+              <p>"Dead City Chronicles" is an engaging 2D maze game I developed using Java. 
+                Players navigate through intricate mazes within a post-apocalyptic city while
+                 avoiding relentless zombies.</p>
+            <button>Read More</button>
+          </div>
+          <div class="project-block hidden">
+            <img src="assets/android.png" alt="Project Image" />
+            <h2>MyRuns</h2>
+            <p>"Dead City Chronicles" is an engaging 2D maze game I developed using Java. 
+              Players navigate through intricate mazes within a post-apocalyptic city while
+               avoiding relentless zombies.</p>
+            <button>Read More</button>
+          </div>
+          <div class="project-block hidden">
+            <img src="assets/flight_delays.png" alt="Project Image" />
+            <h2>Flights Data Analysis</h2>
+            <p>"Dead City Chronicles" is an engaging 2D maze game I developed using Java. 
+              Players navigate through intricate mazes within a post-apocalyptic city while
+               avoiding relentless zombies.</p>
+            <a href="DAO2704_Project.html">
+              <button>Read More</button>
+            </a>
+          </div>
         </div>
-        <footer>
-            <!-- Footer content here -->
-        </footer>
+      </div>
+      <footer>
+        <!-- Footer content here -->
+      </footer>
     </div>
-</body>
+    <div class="spacer layer1"></div>
+  </body>
 </html>

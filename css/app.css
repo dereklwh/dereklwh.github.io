@@ -1,7 +1,7 @@
 body {
   font-family: 'Yu Gothic Medium', sans-serif;
   background-color: #FFF9E9;
-  color: #ffffff;
+  color: #1E4031;
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0;
@@ -29,7 +29,8 @@ nav li a {
 }
 
 nav li a:hover {
-  background-color: #1E4031;
+  background-color: #FFF9E9;
+  color: #1E4031;
 }
 
 header {
@@ -39,20 +40,20 @@ header {
 
 button {
   padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+  border-radius: 100px;
+  border: hidden;
   background-color: #1E4031;
   color: #ffffff;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .name {
-  font-size: 36px; /* Increased size for emphasis */
+  font-size: 40px; /* Increased size for emphasis */
   font-weight: bold;
   color: #2E5941; /* Darkened color for better contrast */
   margin-top: 60px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: center; /* Ensuring name is centered */
 }
 
@@ -60,19 +61,19 @@ button {
   display: inline-block;
   font-size: 10px;
   color: #1E4031;
-  background-color: #FFF9E9;
+  background-color: #FFFfff;
   border-radius: 50%;
-  width: 350px;
-  height: 350px;
-  position: relative;
-  padding: 0;
-  margin: 20px 0;
+  width: 450px;
+  height: 450px;
+  padding: 5px;
+  margin: 20px auto;
+  transform: translateY(10%);
 }
 
 .name-circle p {
-  font-size: 13px; /* Adjusted font size */
+  font-size: 15px; /* Adjusted font size */
   line-height: 1.4;
-  margin: 10px;
+  margin: 25px;
   color: #2E5941; /* Darkened color for better contrast */
   text-align: center; /* Centered the text */
 }
@@ -80,54 +81,68 @@ button {
 
 .landing-button {
   position:absolute;
-  bottom: 10%;
   width: 150px;
-  left: 50%;
   transform: translateX(-50%);
-  border-radius: 5%;
+}
+
+.landing-button:hover {
+  background-color:#FFF9E9;
+  color:#1E4031;
+  border: 1px solid;
+  outline-color: #1E4031;
+  border-color:#1E4031;
 }
 
 
 .landing-section {
-  padding: 50px 0;
-  font-size: 20px;
-}
-
-.top-side {
   flex: 1;
-  overflow-y: auto;
-  background-color: #2E5941;
-  background-image: url('../assets/botanical_bg.jpg');
+  font-size: 20px;
+  background-image: url("../assets/layer2.svg");
   background-size: cover;
   background-position: center;
+  overflow-y: auto;
+  margin-bottom: 250px;
 }
+
 
 /* Style for section titles */
 .section-title {
   font-size: 28px; /* Set font size for section titles */
   color: #1E4031; /* Set color for section titles */
   text-align: center; /* Center the titles */
+  padding: 20px;
 }
 
 /* Work Experience Section Styles */
 .work-experience {
+  flex: 1;
   background-color: #FFF9E9; /* Light background for the section */
-  padding: 40px 20px; /* Padding around the content, adjusted for the grid */
+  align-items: start;
+  justify-content: center;
+  overflow-y: auto;
+  margin-bottom: 40px;
 }
 
 .work-experience-blocks {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Creates a responsive grid */
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Creates a responsive grid */
   gap: 20px; /* Space between the blocks */
+  margin: auto;
   margin-bottom: 40px; /* Space after the whole work experience blocks */
+  justify-content: center;
+  width: 80%;
 }
 
 .work-experience-block {
   background-color: #ffffff; /* White background for each block */
-  border: 1px solid #1E4031; /* Border color to match the section title */
   border-radius: 10px; /* Rounded corners for the blocks */
   padding: 20px; /* Padding inside each block */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.work-experience-block:hover {
+  background-color: #55835F;
+  color: #FFF9E9;
 }
 
 .work-experience-block h2 {
@@ -149,42 +164,131 @@ button {
 
 .bottom-side {
   flex: 1;
+  justify-content: center;
+  align-items: start;
   overflow-y: auto;
   background-color: #FFF9E9;
 }
 
-.project {
+.project-blocks {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Creates two columns */
-  gap: 40px; /* Increased gap for better spacing */
-  padding: 20px; /* Adds padding inside the project section */
-  justify-content: center; /* Center the grid */
-  align-items: start; /* Align the items to start from the top */
-  margin-bottom: 40px; /* Adds space below the project section */
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Creates a responsive grid */
+  gap: 20px;
+  justify-content: center; /* Center grid items horizontally */
+  margin: auto; /* Center the grid itself if it's smaller than its container */
+  padding: 0 20px; /* Add padding on the sides */
+  width: 80%;
 }
 
+
 .project-block {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  border-radius: 10px;
   background-color: #55835F;
-  text-align: center;
-  /* Added max-width to prevent blocks from being too wide on larger screens */
-  max-width: 550px; /* Adjust max-width as needed */
-  margin: auto; /* This will center the blocks in the grid area if they're less than max-width */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 550px;
+  margin: 20px auto; /* Center block and add vertical spacing */
+  color: #FFF9E9;
+}
+
+.project-block h2 {
+  color: #FFF9E9; /* Title color */
+  margin-bottom: 10px; /* Space below the title */
+}
+
+.project-block p {
+  font-size: 14px; /* Smaller font size for details */
 }
 
 .project-block img {
-  width: 100%; /* Full width of the container */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 10px; /* Match the border radius of the block */
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  object-position: center;
 }
 
 .separator-line {
   height: 4px; /* Thickness of the line */
   background-color: #1E4031; /* Color of the line */
   width: 80%; /* Width relative to the container */
-  margin: 10px auto; /* Center the line and add space above and below */
+  margin: 100px auto; /* Center the line and add space above and below */
 }
+
+.spacer {
+  aspect-ratio: 960/300;
+  width: 100%;
+  height: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  }
+  .layer1 {
+    background-image: url('../assets/layer1.svg');
+  }
+  .layer3 {
+    background-image: url('../assets/layer1.5.svg')
+  }
+  .layer2 {
+    background-image: url('../assets/layer2.svg');
+  }
+
+  .hidden {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateX(-100%);
+    transition: all 1s;
+  }
+  
+  .show {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+
+.project-block:nth-child(2){
+  transition-delay: 200ms;
+}
+
+.project-block:nth-child(3){
+  transition-delay: 400ms;
+}
+
+.project-block:nth-child(4){
+  transition-delay: 600ms;
+}
+
+.work-experience-block:nth-child(2){
+  transition-delay: 200ms;
+}
+
+.work-experience-block:nth-child(3){
+  transition-delay: 400ms;
+}
+
+.under-construction {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.under-construction h1 {
+  font-size: 2em;
+  color: #ff8c00; 
+}
+
+.under-construction p {
+  font-size: 1.5em;
+  color: #333333;
+  margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
 
 
