@@ -17,7 +17,7 @@ nav ul {
   list-style-type: none;
   padding: 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 nav li a {
@@ -141,7 +141,7 @@ button {
 }
 
 .work-experience-block:hover {
-  background-color: #55835F;
+  background-color: #f4f8f8;
   color: #FFF9E9;
 }
 
@@ -238,7 +238,7 @@ button {
     opacity: 0;
     filter: blur(3px);
     transform: translateX(-100%);
-    transition: ease-in all 1s;
+    transition: 1s;
   }
   
   .show {
