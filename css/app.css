@@ -129,16 +129,20 @@ nav {
 
 .image-description {
   font-size: 0.6em;
-  color: #55835F;
+  color: #ffffff;
 }
-
 
 .about-me-section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color:#55835F;
+  padding-bottom: 150px;
 }
 
+.about-me-section .section-title {
+  color: #FFFFFF;
+}
 
 .about-me-content {
   display: flex;
@@ -146,6 +150,7 @@ nav {
   justify-content: center;
   width: 80%;
   gap: 10px;
+  color: #ffffff;
 }
 
 .about-me-image {
@@ -176,7 +181,7 @@ nav {
   align-items: start;
   justify-content: center;
   overflow-y: auto;
-  margin-bottom: 40px;
+  padding-bottom: 150px;
 }
 
 .work-experience-blocks {
@@ -271,7 +276,6 @@ nav {
   background-color: #1E4031; /* Color of the line */
   width: 80%; /* Width relative to the container */
   margin: 50px auto; /* Center the line and add space above and below */
-  margin-top: 150px;
   transition-delay: 200ms;
 }
 
