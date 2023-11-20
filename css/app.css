@@ -48,6 +48,18 @@ button {
   margin-top: 10px;
 }
 
+.logo {
+  height: 100px;
+  width: auto;
+}
+
+nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
 .name {
   font-size: 40px; /* Increased size for emphasis */
   font-weight: bold;
