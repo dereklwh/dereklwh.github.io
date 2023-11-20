@@ -48,6 +48,11 @@ button {
   margin-top: 10px;
 }
 
+button:hover {
+  background-color:#FFF9E9;
+  color:#1E4031;
+}
+
 .logo {
   height: 100px;
   width: auto;
@@ -61,10 +66,10 @@ nav {
 }
 
 .name {
-  font-size: 40px; /* Increased size for emphasis */
+  font-size: 50px; 
   font-weight: bold;
   color: #2E5941; /* Darkened color for better contrast */
-  margin-top: 60px;
+  margin-top: 120px;
   margin-bottom: 10px;
   text-align: center; /* Ensuring name is centered */
 }
@@ -91,7 +96,7 @@ nav {
 }
 
 
-.landing-button {
+/* .landing-button {
   position:absolute;
   width: 150px;
   transform: translateX(-50%);
@@ -103,7 +108,7 @@ nav {
   border: 1px solid;
   outline-color: #1E4031;
   border-color:#1E4031;
-}
+} */
 
 
 .landing-section {
@@ -116,13 +121,52 @@ nav {
   margin-bottom: 250px;
 }
 
+.image-container {
+  position: relative;
+  max-width: 50%;
+  text-align: center; /* Center the text below the image */
+}
+
+.image-description {
+  font-size: 0.8em; /* Adjust the font size as needed */
+  color: #666; /* A lighter shade for the description */
+}
+
+
+.about-me-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.about-me-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  gap: 10px;
+}
+
+.about-me-image {
+  flex: 1;
+  height: auto;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.about-me-text {
+  flex: 1;
+  max-width: 50%;
+  margin: 20px;
+}
 
 /* Style for section titles */
 .section-title {
-  font-size: 28px; /* Set font size for section titles */
+  font-size: 40px; /* Set font size for section titles */
   color: #1E4031; /* Set color for section titles */
   text-align: center; /* Center the titles */
-  padding: 20px;
+  font-weight: bold;
 }
 
 /* Work Experience Section Styles */
@@ -143,6 +187,7 @@ nav {
   margin-bottom: 40px; /* Space after the whole work experience blocks */
   justify-content: center;
   width: 80%;
+  margin-top: 20px;
 }
 
 .work-experience-block {
@@ -189,6 +234,7 @@ nav {
   justify-content: center; /* Center grid items horizontally */
   margin: auto; /* Center the grid itself if it's smaller than its container */
   padding: 0 20px; /* Add padding on the sides */
+  margin-top: 20px;
   width: 80%;
 }
 
@@ -224,7 +270,8 @@ nav {
   height: 4px; /* Thickness of the line */
   background-color: #1E4031; /* Color of the line */
   width: 80%; /* Width relative to the container */
-  margin: 100px auto; /* Center the line and add space above and below */
+  margin: 50px auto; /* Center the line and add space above and below */
+  margin-top: 150px;
   transition-delay: 200ms;
 }
 
@@ -252,10 +299,17 @@ nav {
     transform: translateX(-100%);
     transition: 1s;
   }
+
+  .hidden2 {
+    opacity: 0;
+    transform: translateY(50%);
+    transition: 1.5s;
+  }
   
   .show {
     opacity: 1;
     transform: translateX(0);
+    transform: translateY(0);
     filter: blur(0);
   }
 
