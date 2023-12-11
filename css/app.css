@@ -354,6 +354,31 @@ nav {
   margin-top: 20px;
 }
 
+footer {
+  background-color: #1E4031;
+  color: #fff;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.social-links a {
+  margin: 0 10px;
+}
+
+.social-links img {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-text {
+  margin-top: 10px;
+}
+
 
 
 
