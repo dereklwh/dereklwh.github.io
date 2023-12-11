@@ -203,8 +203,9 @@ nav {
 }
 
 .work-experience-block:hover {
-  background-color: #f4f8f8;
-  color: #FFF9E9;
+  background-color: #e5e5e7;
+  color: #f8f8f8;
+  transition-delay: 0s;
 }
 
 .work-experience-block h2 {
