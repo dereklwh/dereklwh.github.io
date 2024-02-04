@@ -183,7 +183,6 @@ nav {
 .work-experience-block:hover {
   background-color: #e5e5e7;
   color: #f8f8f8;
-  transition-delay: 0s;
 }
 
 .work-experience-block h2 {
@@ -308,13 +307,13 @@ nav {
   transition-delay: 600ms;
 }
 
-.work-experience-block:nth-child(2){
+/* .work-experience-block:nth-child(2){
   transition-delay: 200ms;
 }
 
 .work-experience-block:nth-child(3){
   transition-delay: 400ms;
-}
+} */
 
 .under-construction {
   text-align: center;
