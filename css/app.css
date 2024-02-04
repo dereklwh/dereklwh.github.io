@@ -130,7 +130,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 60%;
   gap: 10px;
   color: #ffffff;
 }
@@ -173,7 +173,7 @@ nav {
   margin: auto;
   margin-bottom: 40px; /* Space after the whole work experience blocks */
   justify-content: center;
-  width: 80%;
+  width: 60%;
   margin-top: 20px;
 }
 
@@ -222,7 +222,7 @@ nav {
   margin: auto; /* Center the grid itself if it's smaller than its container */
   padding: 0 20px; /* Add padding on the sides */
   margin-top: 20px;
-  width: 80%;
+  width: 60%;
 }
 
 
