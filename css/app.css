@@ -54,9 +54,15 @@ button {
   margin-top: 10px;
 }
 
+button {
+  transition: 0.5s ease-in-out;
+}
+
 button:hover {
   background-color:#FFF9E9;
   color:#1E4031;
+  font-weight: bold;
+  transform: scale(1.05);
 }
 
 .logo {
