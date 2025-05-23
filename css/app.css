@@ -54,15 +54,9 @@ button {
   margin-top: 10px;
 }
 
-button {
-  transition: 0.5s ease-in-out;
-}
-
 button:hover {
   background-color:#FFF9E9;
   color:#1E4031;
-  font-weight: bold;
-  transform: scale(1.05);
 }
 
 .logo {
@@ -121,15 +115,16 @@ nav {
 }
 
 .about-me-section {
+  height: 100vh;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color:#55835F;
   padding-bottom: 150px;
 }
 
 .about-me-section .section-title {
-  color: #FFFFFF;
+  color: #55835F;
 }
 
 .about-me-content {
