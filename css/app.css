@@ -361,6 +361,41 @@ footer {
   margin-top: 10px;
 }
 
+.scroller {
+  max-width: 300px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.scroller_inner {
+  flex-wrap: wrap;
+  display: flex;
+  padding-block: 1rem;
+  gap: 1rem;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent, 
+    white 20%, 
+    white 80%, 
+    transparent);
+}
+
+.scroller[data-animated="true"] .scroller_inner {
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
 
 
 
