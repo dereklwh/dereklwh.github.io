@@ -5,6 +5,7 @@ import './App.css'
 import Nav from './components/nav.jsx'
 import { TypeAnimation } from 'react-type-animation'
 import heroImage from './assets/derek-notion-face.png'
+import AboutSection from './components/about-section.jsx'
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <a 
             href="https://www.sfu.ca/" 
             target="_blank" 
-            className="font-bold hover:text-[#92ACA0] hover:translate-y-[-2px] transition-transform inline-block"
+            className="font-bold text-[#92ACA0] hover:text-[#A6192E] hover:translate-y-[-2px] transition-transform inline-block"
           >
             Simon Fraser University
           </a>. 
@@ -40,18 +41,23 @@ function App() {
           <a 
             href="https://mosaicbc.org/" 
             target="_blank" 
-            className="font-bold hover:text-[#92ACA0] hover:translate-y-[-2px] transition-transform inline-block"
+            className="font-bold text-[#92ACA0] hover:text-transparent hover:bg-clip-text 
+             hover:bg-gradient-to-r hover:from-yellow-500 hover:via-blue-500 hover:to-green-700 hover:translate-y-[-2px] transition-transform inline-block"
           >
             MOSAIC
           </a>.
         </p>
         <p className="text-lg w-4/5">I am passionate about using data, storytelling, and technology to create tools that drive social good.</p>
       </div>
-      {/* Dummy sections for testing */}
+
+
+      {/* About me section */}
       <section id="about" className="scroll-mt-16 min-h-screen p-12 text-4xl font-bold max-w-4/5 mx-auto">
-        About Me
-        <div className="bg-[#DDE5ED] p-5 shadow-md rounded-lg"/>
+        <h1 className='mb-6'>About Me</h1>
+        <AboutSection/>
       </section>
+
+      {/* Experience section */}
       <section id="experience" className="scroll-mt-16 min-h-screen p-12 text-4xl font-bold max-w-4/5 mx-auto">
         Experience
         <div className="bg-white p-5 shadow-md rounded-lg"/>
