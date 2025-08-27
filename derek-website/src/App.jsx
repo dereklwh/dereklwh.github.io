@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Nav from './components/nav.jsx'
 import { TypeAnimation } from 'react-type-animation'
+import heroImage from './assets/derek-notion-face.png'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         sequence={[
           "Hey there, I'm Derek :)",
           3000,
-          "Welcome to my humble abode. 🛖",
+          "Welcome to my humble abode. 🏠",
           2000,
           "Please make yourself at home. 🍵",
         ]}
@@ -24,6 +25,7 @@ function App() {
         className="text-5xl font-bold mb-8"
         speed={10}
         />
+        <img src={heroImage} className="w-70 h-auto"></img>
         {/* <h1 className="text-5xl font-bold mb-8">Hey There! I'm Derek :) </h1> */}
         <p className="text-lg mb-4 w-4/5">
           Currently studying business and computer science at{' '}

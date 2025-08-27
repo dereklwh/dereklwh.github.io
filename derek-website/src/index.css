@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+}
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

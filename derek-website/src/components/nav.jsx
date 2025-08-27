@@ -30,7 +30,7 @@ export default function Nav() {
                         }
                         {/* <MdLightMode className="inline-block text-2xl" /> */}
                     </button>
-                    <span className="hover:text-[#3e5d58]">Derek Huang</span>
+                    <a href="#" className="hover:text-[#3e5d58] transition">Derek Huang</a>
                 </div>
 
 
