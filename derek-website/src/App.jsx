@@ -6,6 +6,7 @@ import Nav from './components/nav.jsx'
 import { TypeAnimation } from 'react-type-animation'
 import heroImage from './assets/derek-notion-face.png'
 import AboutSection from './components/about-section.jsx'
+import ExperienceSection from './components/experience-section.jsx'
 
 function App() {
   return (
@@ -59,8 +60,8 @@ function App() {
 
       {/* Experience section */}
       <section id="experience" className="scroll-mt-16 min-h-screen p-12 text-4xl font-bold max-w-4/5 mx-auto">
-        Experience
-        <div className="bg-white p-5 shadow-md rounded-lg"/>
+      <h1 className='mb-6'>Experience</h1>
+        <ExperienceSection/>
         </section>
       <section id="projects" className="scroll-mt-16 min-h-screen p-12 text-4xl font-bold max-w-4/5 mx-auto">Projects</section>
       {/* <section id="blog" className="scroll-mt-16 min-h-screen bg-white p-12">Blog</section> */}
