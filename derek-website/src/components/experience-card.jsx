@@ -10,7 +10,7 @@ export default function ExperienceCard({experiences}) {
     }
 
     const leftItem = {hidden: { y:50, opacity:0},
-                     visible: { y:0, opacity: 1, transition: {duration: 0.5, ease: "easeOut", staggerChildren: 0.5}}
+                        visible: { y:0, opacity: 1, transition: {duration: 0.5, ease: "easeOut", staggerChildren: 0.5}}
                     }
 
     const rightItem = {hidden: { x:50, opacity:0},
@@ -48,9 +48,13 @@ export default function ExperienceCard({experiences}) {
                     <motion.div
                      variants={rightItem}
                      className='flex flex-col text-sm px-2 justify-center whitespace-normal'>
-                        <p className='font-bold text-black'>{experience.title}</p>
-                        <p>{experience.time}</p>
-                        <p>{experience.desc}</p>
+                        <p className='font-bold text-black mb-2'>{experience.title}</p>
+                        <p className='mb-4 text-xs'>{experience.time}</p>
+                        <ul className='list-disc list-inside'>
+                            {experience.desc.split("\n").map((item, i) => (
+                                <li key={i}>{item.replace(/^- /, "")}</li>
+                            ))}
+                        </ul>
                     </motion.div>
                 </motion.div>
             ))}

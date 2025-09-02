@@ -53,7 +53,13 @@ const AboutSection = () => {
                 - Building Web Applications<br/>
                 - Social Impact through Technology<br/>
                 - Continuous Learning and Growth<br />
-                - Collaborating with Diverse Teams
+                - Books, Coffee, and my Cat{" "}
+                <span className='relative group cursor-pointer text-[#92ACA0] font-semibold'>
+                    芝麻
+                    <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-400 text-white text-xs px-2 py-1 rounded-lg whitespace-nowrap shadow-md'>
+                        zhi - ma (Sesame)
+                    </span>
+                </span>
             </p>
         </div>
 
