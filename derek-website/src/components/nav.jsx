@@ -35,7 +35,7 @@ export default function Nav() {
 
 
                 {/* Navigation Links */}
-                <div className="hidden md:flex space-x-8 text-sm font-medium">
+                <div className="hidden md:flex space-x-8 text-base font-bold">
                     <a href="#about" className="hover:text-[#92ACA0] transition">About</a>
                     <a href="#experience" className="hover:text-[#92ACA0] transition">Experience</a>
                     <a href="#projects" className="hover:text-[#92ACA0] transition">Projects</a>
