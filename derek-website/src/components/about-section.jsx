@@ -46,22 +46,23 @@ const AboutSection = () => {
     return (
     <div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <div className="p-6 bg-white rounded-lg shadow-md col-span-1">
+        <div className="p-6 bg-white rounded-lg shadow-md col-span-1 hover:bg-[#92ACA0]/2 transition-color duration-300">
             <h3 className="font-bold text-2xl mb-4">I'm Excited About...</h3>
-            <p className='text-base font-normal'>
-                - Data Analytics and Visualization<br/>
-                - Building Web Applications<br/>
-                - Social Impact through Technology<br/>
-                - Documenting my life through journaling<br />
-                - Continuous Learning and Growth<br />
-                - Books, Coffee, and my Cat{" "}
-                <span className='relative group cursor-pointer text-[#92ACA0] font-semibold'>
-                    芝麻
-                    <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-400 text-white text-xs px-2 py-1 rounded-lg whitespace-nowrap shadow-md'>
-                        zhi &bull; ma (Sesame)
+            <ul className='list-disc list-inside text-sm/7 font-normal'>
+                <li>Data Analytics and Visualization</li>
+                <li>Building Web Applications</li>
+                <li>Social Impact through Technology</li>
+                <li>Documenting my life through journaling</li>
+                <li>Continuous Learning and Growth</li>
+                <li>Books, Coffee, and my Cat {" "}
+                    <span className='relative group cursor-pointer text-[#92ACA0] font-semibold'>
+                        芝麻
+                        <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-400 text-white text-xs px-2 py-1 rounded-lg whitespace-nowrap shadow-md'>
+                            zhi &bull; ma (Sesame)
+                        </span>
                     </span>
-                </span>
-            </p>
+                </li>
+            </ul>
         </div>
 
         <div className="p-6 bg-white rounded-lg shadow-md col-span-2">

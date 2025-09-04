@@ -6,16 +6,18 @@ import website from '../assets/projects/website.png'
 import assistiveKeyboard from '../assets/projects/assistive_keyboard.png'
 import nhlTravelAnalysis from '../assets/projects/hockey_photo.jpg'
 import hospitalBot from '../assets/projects/hospital_bot.png'
+import adminPage from '../assets/projects/admin_page_login.png'
+import chatbot from '../assets/projects/chatbot2.png'
 
 const ProjectsSection = () => {
 
     const project = [
-        {src:website, name: "Personal Website", year:"2025", desc:"This website right here!"},
-        {src:null, name: "MOSAIC Admin Portal", year:"2025"},
+        {src:website, name: "Personal Website", year:"2025", desc:"This website right here!", url: "https://github.com/dereklwh/dereklwh.github.io"},
+        {src:adminPage, name: "MOSAIC Admin Portal", year:"2025", desc:"Developed a content management portal enabling MOSAIC to edit and maintain program data referenced by the chatbot’s Neo4j graph database. Built with React, TypeScript, and Flask, featuring user authentication and custom APIs for seamless updates."},
         {src:assistiveKeyboard, name: "AI Assistive Keyboard", year:"2025", desc:"Developed an assistive keyboard aimed to help patients with communication disabilities. Uses NLP interface that facilitates common language interactions, eye tracking, and speech recognition. Built using ReactJS, TailwindCSS, and Python.", url:"https://github.com/sfu-cmpt340/2025_1_project_18?tab=readme-ov-file#project-overview"},
         {src:nhlTravelAnalysis, name: "NHL Travel Analysis", year:"2025", desc: "Built a modular Python data pipeline to process over 10,000 rows of NHL schedule and geospatial data to analyze team performance during travel. Produced findings in a report with visualizations.", url:"https://github.com/dereklwh/nhl-travel-analysis/blob/main/project-report.pdf"},
-        {src:null, name: "MOSAIC Chatbot", year:"2024"},
-                {src:crosswatch, name: "CrossWatch", year: "2024", desc: "A movie sharing platform that allows users to create and share watchlists. Competing in the Produhacks hackathon. Built using MERN stack, material-ui, and movieDB API.", url: "https://github.com/jeffre-h/CrossWatch"},
+        {src:chatbot, name: "MOSAIC Chatbot", year:"2024", desc:"Developed an AI chatbot with SFU Blueprint for MOSAIC that improves accessibility for newcomers with real-time program guidance. Built with Flask, Neo4j, and OpenAI models, and recognized as a Top 4 finalist in the SFU CS Diversity Award."},
+        {src:crosswatch, name: "CrossWatch", year: "2024", desc: "A movie sharing platform that allows users to create and share watchlists. Competing in the Produhacks hackathon. Built using MERN stack, material-ui, and movieDB API.", url: "https://github.com/jeffre-h/CrossWatch"},
         {src: fluentU, name: "FluentU", year: "2023",desc:" An interactive language learning app with quizzes and customizable flashcards powered by Google Cloud Translation API. Developed in Kotlin", url:"https://github.com/dereklwh/FluentU"},
         {src: dcc, name: "Dead City Cronicles", year:"2023", desc:"An engaging 2D maze game where players navigate through intricate mazes while avoiding smart zombies. Developed using Java and OOP principles. Unit tests implemented using JUnit.", url:"https://github.com/dereklwh/DeadCityChronicles"},
         {src:hospitalBot, name: "Hospital Bot", year: "2022", desc: "SMS-based chatbot that recommends nearest hospitals to users based on their location. Live up-to-date hospital wait times are scraped using BeautifulSoup and Selenium. Developed using Python, Twilio, Google Maps API and deployed on Heroku.", url:"https://github.com/jeffre-h/HospitalBot"}
@@ -52,7 +54,7 @@ const ProjectsSection = () => {
                                 <FaGithub className='ml-2'/>
                             </a> 
                             ) : (
-                                <span className='text-base text-[#92ACA0] font-medium'>Github Available</span>
+                                <span className='text-base text-[#92ACA0] font-medium'>Github Unavailable</span>
                             )}
                         </div>
                     </div>
