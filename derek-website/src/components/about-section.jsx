@@ -45,8 +45,8 @@ const AboutSection = () => {
       
     return (
     <div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <div className="p-6 bg-white rounded-lg shadow-md col-span-1 hover:bg-[#92ACA0]/2 transition-color duration-300">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 items-stretch">
+        <div className="p-6 bg-white rounded-lg shadow-md col-span-1 hover:bg-[#92ACA0]/2 transition-colors duration-300">
             <h3 className="font-bold text-2xl mb-4">I'm Excited About...</h3>
             <ul className='list-disc list-inside text-sm/7 font-normal'>
                 <li>Data Analytics and Visualization</li>
@@ -89,7 +89,9 @@ const AboutSection = () => {
             </div>
             <div className="h-1 w-full bg-[#92ACA0]"/>
             {/* <img src={coffeeImage} className='rounded-lg h-64 w-full object-cover'/> */}
+
             <GalleryCarousel images={galleryImages} />
+            
         </div>
         <div className="p-6 bg-white rounded-lg shadow-md col-span-1">
             <h3 className="font-bold text-2xl">Let's Connect!</h3>
