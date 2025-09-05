@@ -1,0 +1,410 @@
+body {
+  font-family: 'Yu Gothic Medium', sans-serif;
+  font-size: 18px;
+  background-color: #FFF9E9;
+  color: #1E4031;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  cursor: url('../assets/dot_cursor.png'), auto;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav li a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 50px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav li a:hover {
+  background-color: #FFF9E9;
+  color: #1E4031;
+}
+
+header {
+  text-align: center;
+  padding: 50px 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 100px;
+  border: hidden;
+  background-color: #1E4031;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color:#FFF9E9;
+  color:#1E4031;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+}
+
+nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.name {
+  font-size: 50px; 
+  font-weight: bold;
+  color: #2E5941; /* Darkened color for better contrast */
+  margin-top: 120px;
+  margin-bottom: 10px;
+  text-align: center; /* Ensuring name is centered */
+}
+
+.name-circle {
+  display: inline-block;
+  font-size: 10px;
+  color: #1E4031;
+  background-color: #FFFfff;
+  border-radius: 50%;
+  width: 450px;
+  height: 450px;
+  padding: 5px;
+  margin: 20px auto;
+  transform: translateY(10%);
+}
+
+.landing-section {
+  flex: 1;
+  font-size: 20px;
+  background-image: url("../assets/layer2.svg");
+  background-size: cover;
+  background-position: center;
+  overflow-y: auto;
+  margin-bottom: 250px;
+}
+
+.image-container {
+  position: relative;
+  max-width: 50%;
+  text-align: center; /* Center the text below the image */
+}
+
+.image-description {
+  font-size: 0.6em;
+  color: #ffffff;
+}
+
+.about-me-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 150px;
+}
+
+.about-me-section .section-title {
+  color: #55835F;
+}
+
+.about-me-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  gap: 10px;
+  color: #ffffff;
+}
+
+.about-me-image {
+  flex: 1;
+  height: auto;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.about-me-text {
+  flex: 1;
+  max-width: 50%;
+  margin: 20px;
+}
+
+/* Style for section titles */
+.section-title {
+  font-size: 40px; /* Set font size for section titles */
+  color: #1E4031; /* Set color for section titles */
+  text-align: center; /* Center the titles */
+  font-weight: bold;
+}
+
+/* Work Experience Section Styles */
+.work-experience {
+  flex: 1;
+  background-color: #FFF9E9; /* Light background for the section */
+  align-items: start;
+  justify-content: center;
+  overflow-y: auto;
+  padding-bottom: 150px;
+}
+
+.work-experience-blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Creates a responsive grid */
+  gap: 20px; /* Space between the blocks */
+  margin: auto;
+  margin-bottom: 40px; /* Space after the whole work experience blocks */
+  justify-content: center;
+  width: 60%;
+  margin-top: 20px;
+}
+
+.work-experience-block {
+  background-color: #ffffff; /* White background for each block */
+  border-radius: 10px; /* Rounded corners for the blocks */
+  padding: 20px; /* Padding inside each block */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.work-experience-block:hover {
+  background-color: #e5e5e7;
+  color: #f8f8f8;
+}
+
+.work-experience-block h2 {
+  color: #1E4031; /* Title color inside the block */
+  margin-bottom: 10px; /* Space below the title */
+}
+
+.work-experience-block p,
+.work-experience-block ul {
+  color: #2E5941; /* Text color for the paragraph and list */
+  font-size: 14px; /* Smaller font size for detail text */
+}
+
+.work-experience-block ul {
+  list-style-type: disc; /* Styled list for bullet points */
+  margin-left: 20px; /* Indent for the list */
+}
+
+
+.bottom-side {
+  flex: 1;
+  justify-content: center;
+  align-items: start;
+  overflow-y: auto;
+  background-color: #FFF9E9;
+}
+
+.project-blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Creates a responsive grid */
+  gap: 20px;
+  justify-content: center; /* Center grid items horizontally */
+  margin: auto; /* Center the grid itself if it's smaller than its container */
+  padding: 0 20px; /* Add padding on the sides */
+  margin-top: 20px;
+  width: 60%;
+}
+
+
+.project-block {
+  background-color: #55835F;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 550px;
+  margin: 20px auto; /* Center block and add vertical spacing */
+  color: #FFF9E9;
+}
+
+.project-block h2 {
+  color: #FFF9E9; /* Title color */
+  margin-bottom: 10px; /* Space below the title */
+}
+
+.project-block p {
+  font-size: 14px; /* Smaller font size for details */
+}
+
+.project-block img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  object-position: center;
+}
+
+.separator-line {
+  height: 4px; /* Thickness of the line */
+  background-color: #1E4031; /* Color of the line */
+  width: 80%; /* Width relative to the container */
+  margin: 50px auto; /* Center the line and add space above and below */
+  transition-delay: 200ms;
+}
+
+.spacer {
+  aspect-ratio: 960/300;
+  width: 100%;
+  height: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  }
+  .layer1 {
+    background-image: url('../assets/layer1.svg');
+  }
+  .layer3 {
+    background-image: url('../assets/layer1.5.svg')
+  }
+  .layer2 {
+    background-image: url('../assets/layer2.svg');
+  }
+
+  .hidden {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateX(-100%);
+    transition: 1s;
+  }
+
+  .hidden2 {
+    opacity: 0;
+    transform: translateY(50%);
+    transition: 1.5s;
+  }
+  
+  .show {
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+.project-block:nth-child(2){
+  transition-delay: 200ms;
+}
+
+.project-block:nth-child(3){
+  transition-delay: 400ms;
+}
+
+.project-block:nth-child(4){
+  transition-delay: 600ms;
+}
+
+/* .work-experience-block:nth-child(2){
+  transition-delay: 200ms;
+}
+
+.work-experience-block:nth-child(3){
+  transition-delay: 400ms;
+} */
+
+.under-construction {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.under-construction h1 {
+  font-size: 2em;
+  color: #ff8c00; 
+}
+
+.under-construction p {
+  font-size: 1.5em;
+  color: #333333;
+  margin-top: 20px;
+}
+
+footer {
+  background-color: #1E4031;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.social-links a {
+  margin: 0 10px;
+}
+
+.social-links img {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-text {
+  margin-top: 10px;
+}
+
+.scroller {
+  max-width: 300px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.scroller_inner {
+  flex-wrap: wrap;
+  display: flex;
+  padding-block: 1rem;
+  gap: 1rem;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent, 
+    white 20%, 
+    white 80%, 
+    transparent);
+}
+
+.scroller[data-animated="true"] .scroller_inner {
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
