@@ -9,7 +9,7 @@ import AboutSection from './components/about-section.jsx'
 import ExperienceSection from './components/experience-section.jsx'
 import ProjectsSection from './components/projects-section.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import BlogPage from './pages/blog-page';
+import BlogPage from './pages/blog-page.jsx';
 
 function Home() {
   return (
