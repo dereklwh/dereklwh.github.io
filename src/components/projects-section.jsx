@@ -1,5 +1,5 @@
 import { FaGithub } from 'react-icons/fa'
-import fluentU from '../assets/projects/fluentU.png'
+import fluentU from '../assets/projects/FluentU.png'
 import dcc from '../assets/projects/game_project.png'
 import crosswatch from '../assets/projects/crosswatch.png'
 import website from '../assets/projects/website.png'
