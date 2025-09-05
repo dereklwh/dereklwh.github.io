@@ -16,7 +16,7 @@ function Home() {
     <div className="bg-linear-65 from-white to-[#DDE5ED] text-[#3e5d58] pt-16">
       <Nav/>
       {/* hero */}
-      <div className="justify-center p-12 mx-auto text-center max-w-4/5 min-h-screen flex flex-col items-center">
+      <div className="justify-center p-12 mx-auto text-center md:max-w-4/5 min-h-screen flex flex-col items-center">
         {/* have a cool aninmation here */}
         <TypeAnimation 
         sequence={[
@@ -56,18 +56,18 @@ function Home() {
 
 
       {/* About me section */}
-      <section id="about" className="scroll-mt-16 min-h-screen font-bold max-w-4/5 mx-auto p-12">
+      <section id="about" className="scroll-mt-16 min-h-screen font-bold md:max-w-4/5 mx-auto p-12">
         <h1 className='text-4xl mb-6'>About Me
         </h1>
         <AboutSection/>
       </section>
 
       {/* Experience section */}
-      <section id="experience" className="scroll-mt-16 min-h-screen font-bold max-w-4/5 mx-auto p-12">
+      <section id="experience" className="scroll-mt-16 min-h-screen font-bold md:max-w-4/5 mx-auto p-12">
         <h1 className='text-4xl mb-6'>Experience</h1>
         <ExperienceSection/>
         </section>
-      <section id="projects" className="scroll-mt-16 min-h-screen font-bold p-12 max-w-4/5 mx-auto p-12">
+      <section id="projects" className="scroll-mt-16 min-h-screen font-bold p-12 md:max-w-4/5 mx-auto p-12">
         <h1 className='text-4xl mb-6'>Projects</h1>
         <ProjectsSection/>
       </section>
