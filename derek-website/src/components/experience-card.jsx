@@ -18,7 +18,8 @@ export default function ExperienceCard({experiences}) {
                     }
 
     return (
-        <div className=''>
+        <div className='relative'>
+            <div className='absolute justify-self-center border-dashed self-start border-l-2 border-[#92ACA0] h-full'/>
             <div className='flex flex-col md:w-2/3 mx-auto mb-4'>
                 {experiences.map((experience, index) => (
                     <motion.div key={index} 
@@ -40,15 +41,17 @@ export default function ExperienceCard({experiences}) {
                             <p className='text-xs text-[#92ACA0]'>{experience.location}</p>
                         </motion.div>
                         {/* middle line */}
-                        <div className="relative flex items-center">
+                        <motion.div 
+                            variants={rightItem}
+                            className="relative flex items-center">
                             {/* Line */}
-                            <div className="h-full border-l-2 border-dashed border-[#92ACA0]"></div>
+                            {/* <div className="h-full border-l-2 border-dashed border-[#92ACA0]"></div> */}
                             {/* Leaf in center */}
                             <LuLeaf className="absolute left-1/2 transform -translate-x-1/2 text-white bg-[#92ACA0] p-1 rounded-full" size={20} />
-                        </div>
+                        </motion.div>
                         <motion.div
                         variants={rightItem}
-                        className='flex flex-col text-sm px-2 pl-4 justify-center whitespace-normal'>
+                        className='flex flex-col text-xs px-2 pl-4 justify-center whitespace-normal'>
                             <p className='font-bold text-black mb-2'>{experience.title}</p>
                             <p className='mb-4 text-xs'>{experience.time}</p>
                             <ul className='list-disc list-inside'>

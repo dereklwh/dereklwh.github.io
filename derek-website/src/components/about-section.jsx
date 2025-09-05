@@ -54,7 +54,11 @@ const AboutSection = () => {
                 <li>Social Impact through Technology</li>
                 <li>Documenting my life through journaling</li>
                 <li>Continuous Learning and Growth</li>
-                <li>Books, Coffee, and my Cat {" "}
+                <li>
+                    <a  href='https://www.goodreads.com/review/list/182676242-derek?shelf=read'
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className='font-bold text-[#92ACA0] hover:text-[#92ACA0] hover:translate-y-[-2px] transition-transform inline-block'>Books</a>, Coffee, and my Cat {" "}
                     <span className='relative group cursor-pointer text-[#92ACA0] font-semibold'>
                         芝麻
                         <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-400 text-white text-xs px-2 py-1 rounded-lg whitespace-nowrap shadow-md'>

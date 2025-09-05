@@ -8,8 +8,10 @@ import heroImage from './assets/derek-notion-face.png'
 import AboutSection from './components/about-section.jsx'
 import ExperienceSection from './components/experience-section.jsx'
 import ProjectsSection from './components/projects-section.jsx'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BlogPage from './pages/blog-page';
 
-function App() {
+function Home() {
   return (
     <div className="bg-linear-65 from-white to-[#DDE5ED] text-[#3e5d58] pt-16">
       <Nav/>
@@ -54,22 +56,34 @@ function App() {
 
 
       {/* About me section */}
-      <section id="about" className="scroll-mt-16 min-h-screen font-bold max-w-4/5 mx-auto p-12 xl:max-w-7xl">
-        <h1 className='text-4xl text-center mb-6'>About Me</h1>
+      <section id="about" className="scroll-mt-16 min-h-screen font-bold max-w-4/5 mx-auto p-12">
+        <h1 className='text-4xl mb-6'>About Me
+        </h1>
         <AboutSection/>
       </section>
 
       {/* Experience section */}
       <section id="experience" className="scroll-mt-16 min-h-screen font-bold max-w-4/5 mx-auto p-12">
-        <h1 className='text-4xl text-center mb-6'>Experience</h1>
+        <h1 className='text-4xl mb-6'>Experience</h1>
         <ExperienceSection/>
         </section>
       <section id="projects" className="scroll-mt-16 min-h-screen font-bold p-12 max-w-4/5 mx-auto p-12">
-        <h1 className='text-4xl text-center mb-6'>Projects</h1>
+        <h1 className='text-4xl mb-6'>Projects</h1>
         <ProjectsSection/>
       </section>
       {/* <section id="blog" className="scroll-mt-16 min-h-screen bg-white p-12">Blog</section> */}
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='blog' element={<BlogPage />} />
+      </Routes>
+    </Router>
   )
 }
 

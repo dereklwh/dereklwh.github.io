@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   FaLinkedin,
   FaGithub,
@@ -39,7 +40,10 @@ export default function Nav() {
                     <a href="#about" className="hover:text-[#92ACA0] transition">About</a>
                     <a href="#experience" className="hover:text-[#92ACA0] transition">Experience</a>
                     <a href="#projects" className="hover:text-[#92ACA0] transition">Projects</a>
-                    <a href="#blog" className="hover:text-[#92ACA0] transition">Blog</a>
+                    <Link to='/blog' className="hover:text-[#92ACA0] transition">
+                        Blog
+                    </Link>
+                    {/* <a href="#blog" className="hover:text-[#92ACA0] transition">Blog</a> */}
                 </div>
             </div>
         </nav>
