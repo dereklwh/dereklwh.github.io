@@ -13,13 +13,14 @@ import photo10 from '../assets/gallery/012.jpeg'
 import photo11 from '../assets/gallery/013.jpeg'
 import photo12 from '../assets/gallery/014.jpeg'
 import photo13 from '../assets/gallery/015.jpeg'
+import photo14 from '../assets/gallery/mygoat.jpeg'
 
 
 const GalleryPage = () => {
     const navigate = useNavigate();
 
-    const v_images = [photo3, photo5, photo9, photo10, photo13]
-    const h_images = [photo1, photo2, photo4, photo6, photo7, photo12, photo8]
+    const v_images = [photo3, photo5, photo9, photo10, photo13, photo14]
+    const h_images = [photo8, photo1, photo2, photo4, photo6, photo7, photo12]
     // future: have different themes in gallery page: film, nature, hobby, etc..
     // for now, just dump all images in one page :)
     return (
@@ -28,7 +29,7 @@ const GalleryPage = () => {
             {/* if l > w, then portrait and insert into top div*/}
             <div className="flex flex-col items-stretch text-white p-5 md:p-15">
                 <button className="text-white hover:text-[#3e5d58] hover:underline px-4 py-2 inline-flex" onClick={() => navigate(-1)}>
-                    Go Back
+                    go back
                 </button>
                 <h1 className='text-4xl self-center'>Gallery</h1>
                 <p className='self-center mb-6 text-[#92ACA0]'>photos I like and photos of stuff I like</p>
