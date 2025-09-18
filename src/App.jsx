@@ -10,6 +10,7 @@ import ExperienceSection from './components/experience-section.jsx'
 import ProjectsSection from './components/projects-section.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BlogPage from './pages/blog-page.jsx';
+import GalleryPage from './pages/gallery-page.jsx';
 
 function Home() {
   return (
@@ -32,7 +33,7 @@ function Home() {
         />
         <img src={heroImage} className="w-70 h-auto"></img>
         {/* <h1 className="text-5xl font-bold mb-8">Hey There! I'm Derek :) </h1> */}
-        <p className="text-lg mb-4 w-4/5">
+        <p className="text-lg mb-4 md:w-4/5">
           Currently studying business and computer science at{' '}
           <a 
             href="https://www.sfu.ca/" 
@@ -82,6 +83,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='blog' element={<BlogPage />} />
+        <Route path='gallery' element={<GalleryPage />} />
       </Routes>
     </Router>
   )

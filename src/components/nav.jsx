@@ -43,6 +43,9 @@ export default function Nav() {
                     <Link to='/blog' className="hover:text-[#92ACA0] transition">
                         Blog
                     </Link>
+                    <Link to='/gallery' className="hover:text-[#92ACA0] transition">
+                        Gallery
+                    </Link>
                     {/* <a href="#blog" className="hover:text-[#92ACA0] transition">Blog</a> */}
                 </div>
             </div>
