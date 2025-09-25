@@ -1,6 +1,3 @@
-import { useState, useRef } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Nav from './components/nav.jsx'
 import { TypeAnimation } from 'react-type-animation'
@@ -11,8 +8,10 @@ import ProjectsSection from './components/projects-section.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BlogPage from './pages/blog-page.jsx';
 import GalleryPage from './pages/gallery-page.jsx';
+import CurrentlyReading from './hooks/CurrentlyReading.js';
 
 function Home() {
+  const book = CurrentlyReading();
   return (
     <div className="bg-linear-65 from-white to-[#DDE5ED] text-[#3e5d58] pt-16">
       <Nav/>
@@ -52,7 +51,12 @@ function Home() {
             MOSAIC
           </a>.
         </p>
-        <p className="text-lg w-4/5">I am passionate about using data, storytelling, and technology to create tools that drive social good.</p>
+        <p className="text-lg w-4/5">I am passionate about using data, storytelling, and technology to create tools that drive social good.
+          { book ? (
+            <span> I am currently reading <a className="text-[#92ACA0] hover:underline hover:text-orange-400" href={book.link}>{book.title}</a> by {book.author}</span>
+          ) : null}
+        </p>
+
       </div>
 
 

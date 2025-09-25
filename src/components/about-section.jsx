@@ -41,8 +41,7 @@ const AboutSection = () => {
         { name: "Instagram", icon: <FaInstagram />, href: "https://www.instagram.com/derekklwh" },
         { name: "Email", icon: <HiOutlineMail />, href: "mailto:dlh10@sfu.ca" },
         { name: "Resume", icon: <IoDocumentText />, href: "/DerekHuangResume.pdf" }, // put resume in public/
-      ];
-      
+    ];
     return (
     <div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 items-stretch">

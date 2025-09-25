@@ -11,6 +11,7 @@ import { MdNightlight, MdLightMode } from "react-icons/md";
 
 export default function Nav() {
     const [isDark, setIsDark] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <nav className="w-full fixed top-0 z-50 px-6 py-4 bg-[#DDE5ED]/50 backdrop-blur-md shadow-md">
@@ -48,7 +49,31 @@ export default function Nav() {
                     </Link>
                     {/* <a href="#blog" className="hover:text-[#92ACA0] transition">Blog</a> */}
                 </div>
+
+                {/* hamburger for mobile */}
+                <div className='flex md:hidden'>
+                    <p> HI</p>
+                    <button 
+                     onClick={() => setIsOpen(!isOpen)}
+                     className='text-black hover:text-[#3e5d58] transition'>
+                        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                    </button>
+                </div>
             </div>
+            {/* Mobile Menu */}
+            {isOpen && (
+                <div className="md:hidden mt-2 space-y-2 text-base font-bold text-center">
+                    <a href="#about" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>About</a>
+                    <a href="#experience" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>Experience</a>
+                    <a href="#projects" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>Projects</a>
+                    <Link to='/blog' className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>
+                        Blog
+                    </Link>
+                    <Link to='/gallery' className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>
+                        Gallery
+                    </Link>
+                </div>
+            )}
         </nav>
     );
 }
