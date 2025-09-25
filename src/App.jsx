@@ -8,10 +8,10 @@ import ProjectsSection from './components/projects-section.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BlogPage from './pages/blog-page.jsx';
 import GalleryPage from './pages/gallery-page.jsx';
-import CurrentlyReading from './hooks/CurrentlyReading.js';
+import useCurrentlyReading from './hooks/useCurrentlyReading.js';
 
 function Home() {
-  const book = CurrentlyReading();
+  const book = useCurrentlyReading();
   return (
     <div className="bg-linear-65 from-white to-[#DDE5ED] text-[#3e5d58] pt-16">
       <Nav/>

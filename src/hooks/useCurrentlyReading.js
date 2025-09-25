@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
   
-export default function CurrentlyReading() {
+export default function useCurrentlyReading() {
     const [book, setBook] = useState(null);
 
     useEffect(() => {
@@ -13,9 +13,7 @@ export default function CurrentlyReading() {
                 const text = await response.text();
                 const parser = new DOMParser();
                 const xml = parser.parseFromString(text, "application/xml");
-                console.log(xml);
                 const item = xml.querySelector("item");
-                console.log(item);
 
                 if (item) {
                     const title = item.querySelector("title").textContent;
