@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import {
   FaLinkedin,
@@ -13,16 +13,33 @@ export default function Nav() {
     const [isDark, setIsDark] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
+    useEffect(() => {
+        if (document.documentElement.classList.contains('dark')) {
+            setIsDark(true);
+        }
+
+    }, []);
+
+    const toggleDarkMode = () => {
+        if (isDark) {
+            document.documentElement.classList.remove('dark');
+            setIsDark(false);
+            console.log('set to light mode');
+        } else {
+            document.documentElement.classList.add('dark');
+            setIsDark(true);
+            console.log('set to dark mode');
+        }
+    }
+
     return (
         <nav className="w-full fixed top-0 z-50 px-6 py-4 bg-[#DDE5ED]/50 backdrop-blur-md shadow-md">
             <div className="max-w-6xl mx-auto flex items-center">
                 {/* Logo / Name */}
                 <div className="text-2xl font-bold text-[#92ACA0] flex-grow">
                     {/* night mode toggle */}
-                    <button className="text-[#92ACA0] hover:text-[#3e5d58] transition mr-4" onClick={() => {
-                        //change the button logo
-                        setIsDark(!isDark);
-                    }}
+                    <button className="text-[#92ACA0] hover:text-[#3e5d58] transition mr-4"
+                    onClick={toggleDarkMode}
                     >
                         { isDark ? (
                             <MdLightMode className="inline-block text-2xl"/>
@@ -32,7 +49,7 @@ export default function Nav() {
                         }
                         {/* <MdLightMode className="inline-block text-2xl" /> */}
                     </button>
-                    <a href="#" className="hover:text-[#3e5d58] transition">Derek Huang</a>
+                    <a href="#" className="dark:text-white hover:text-[#3e5d58] transition">Derek Huang</a>
                 </div>
 
 

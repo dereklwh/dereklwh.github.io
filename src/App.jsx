@@ -13,7 +13,7 @@ import useCurrentlyReading from './hooks/useCurrentlyReading.js';
 function Home() {
   const book = useCurrentlyReading();
   return (
-    <div className="bg-linear-65 from-white to-[#DDE5ED] text-[#3e5d58] pt-16">
+    <div className="dark:bg-gray-500 bg-linear-65 from-white to-[#DDE5ED] text-[#3e5d58] pt-16">
       <Nav/>
       {/* hero */}
       <div className="justify-center p-12 mx-auto text-center md:max-w-4/5 min-h-screen flex flex-col items-center">
