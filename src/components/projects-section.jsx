@@ -10,11 +10,13 @@ import hospitalBot from '../assets/projects/hospital_bot.png'
 import adminPage from '../assets/projects/admin_page_login.png'
 import chatbot from '../assets/projects/chatbot2.png'
 import canucksWrapped from '../assets/projects/wrapped.png'
+import stormhacks from '../assets/projects/pomi_stormhacks.png'
 
 const ProjectsSection = () => {
     const [openIndex, setOpenIndex] = useState(null); // number | null
   
     const project = [
+      {src:stormhacks, name: "Pomi", year:"2025", desc:"As a part of StormHacks 2025, developed Pomi, a Pomodoro Pet that uses computer vision to track your focus. Built using NextJS, SQLite3, Flask, and MediaPipe.", url: "https://github.com/braydenmsue/cacheroyale-pomodoro"},
       {src:website, name: "Personal Website", year:"2025", desc:"This website right here! CI/CD pipeline implemented for seamless updates.", url: "https://github.com/dereklwh/dereklwh.github.io"},
       {src:adminPage, name: "MOSAIC Admin Portal", year:"2025", desc:"Developed a content management portal enabling MOSAIC to edit and maintain program data referenced by the chatbot’s Neo4j graph database. Built with React, TypeScript, and Flask, featuring user authentication and custom APIs for seamless updates."},
       {src:assistiveKeyboard, name: "AI Assistive Keyboard", year:"2025", desc:"Developed an assistive keyboard aimed to help patients with communication disabilities. Uses NLP interface that facilitates common language interactions, eye tracking, and speech recognition. Built using ReactJS, TailwindCSS, and Python.", url:"https://github.com/sfu-cmpt340/2025_1_project_18?tab=readme-ov-file#project-overview"},

@@ -20,8 +20,6 @@ export default function useCurrentlyReading() {
                     const link = item.querySelector("link").textContent;
                     const image = item.querySelector("book_small_image_url").textContent;
                     const author = item.querySelector("author_name").textContent;
-                    console.log({ title, link, image, author });
-
                     setBook({ title, link, image, author });
                 }
                 
