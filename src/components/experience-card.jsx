@@ -19,11 +19,11 @@ export default function ExperienceCard({experiences}) {
 
     return (
         <div className='relative'>
-            <div className='absolute justify-self-center border-dashed self-start border-l-2 border-[#92ACA0] h-full'/>
+            <div className='absolute md:justify-self-center border-dashed self-start border-l-2 border-[#92ACA0] h-full'/>
             <div className='flex flex-col md:w-2/3 mx-auto mb-4'>
                 {experiences.map((experience, index) => (
                     <motion.div key={index} 
-                    className="grid grid-cols-[1fr_auto_1fr] items-stretch mx-auto gap-10 gap-y-6 mb-4"
+                    className="grid grid-cols-[auto_1fr] md:grid-cols-[1fr_auto_1fr] items-stretch gap-10 gap-y-6 mb-4"
                     variants={container}
                     initial="hidden"
                     whileInView="visible"
@@ -31,13 +31,13 @@ export default function ExperienceCard({experiences}) {
                     >
                         <motion.div
                         variants={leftItem}
-                        className='hidden md:flex flex-col items-center mt-8'
+                        className='hidden min-w-0 md:flex flex-col items-center mt-8'
                         > 
                             <img
                             src={experience.src}
                             className='h-25 w-25 object-cover mb-6'
                             />
-                            <p className='font-bold text-sm mb-2 justify-self-center'>{experience.company}</p>
+                            <p className='font-bold text-sm mb-2 items-center justify-self-center'>{experience.company}</p>
                             <p className='text-xs text-[#92ACA0]'>{experience.location}</p>
                         </motion.div>
                         {/* middle line */}
@@ -51,7 +51,7 @@ export default function ExperienceCard({experiences}) {
                         </motion.div>
                         <motion.div
                         variants={rightItem}
-                        className='flex flex-col text-xs px-2 pl-4 justify-center whitespace-normal'>
+                        className='flex flex-col min-w-0 text-xs px-2 pl-4 justify-center whitespace-normal'>
                             <p className='font-bold text-black mb-2'>{experience.title}</p>
                             <p className='mb-4 text-xs'>{experience.time}</p>
                             <ul className='list-disc list-inside'>
