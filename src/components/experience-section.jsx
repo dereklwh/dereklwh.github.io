@@ -5,6 +5,7 @@ import dwLogo from '../assets/dwave-logo.jpeg'
 import MatchstickLogo from '../assets/matchstick-logo.jpeg'
 
 const ExperienceSection = () => {
+  // TODO: fetch experiences form a json instead
     const experiences = [
         {
             src: bpLogo,
@@ -54,8 +55,6 @@ const ExperienceSection = () => {
     return (
         <div className=''>
             <ExperienceCard experiences={experiences}/>
-            {/* <ExperienceCard />
-            <ExperienceCard /> */}
         </div>
     )
 }
