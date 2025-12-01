@@ -69,7 +69,6 @@ export default function Nav() {
 
                 {/* hamburger for mobile */}
                 <div className='flex md:hidden'>
-                    <p> HI</p>
                     <button 
                      onClick={() => setIsOpen(!isOpen)}
                      className='text-black hover:text-[#3e5d58] transition'>
