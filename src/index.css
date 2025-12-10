@@ -4,6 +4,40 @@ body {
 	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
 }
 
+@layer components {
+  .prose h1 {
+    @apply text-4xl font-bold mb-10;
+  }
+
+  .prose h2 {
+    @apply text-3xl font-semibold mt-6 mb-4;
+  }
+
+  .prose ul {
+    @apply list-disc pl-6 space-y-2;
+  }
+
+  .prose li {
+    @apply leading-relaxed;
+  }
+
+  .prose p {
+    @apply mb-2 leading-relaxed;
+  }
+
+  .prose strong {
+    @apply font-bold text-purple-400;
+  }
+
+  .prose pre {
+    @apply rounded mt-6 mb-4 px-6 py-6 text-sm font-mono
+    bg-gray-100 text-gray-700
+    dark:bg-gray-900/40 dark:text-gray-300;
+  }
+
+  
+}
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

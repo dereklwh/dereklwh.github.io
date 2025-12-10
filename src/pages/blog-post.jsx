@@ -8,24 +8,40 @@ const BlogPost = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        document.title = `Blog - ${slug.replace(/-/g, ' ')}`;
+        
         import(`../blog/${slug}.md`)
           .then((res) => fetch(res.default))
           .then((r) => r.text())
           .then((text) => {
-            console.log(text)
-            setContent(text);
+            const cleaned = stripFrontmatter(text);
+            setContent(cleaned);
           })
           .catch(() => setContent("# 404\nPost not found."));
       }, [slug]);
 
-      return(
-        <div className="p-10 max-w-3xl mx-auto text-[#3e5d58]">
-            <button className=" hover:text-[#3e5d58] hover:underline" onClick={() => navigate(-1)}>
-                go back
-            </button>
-            <ReactMarkdown className="prose prose-invert prose-lg mx-auto border-4 border-red-500">{content}</ReactMarkdown>
-        </div>
-      )
+    function stripFrontmatter(text) {
+      const match = /^---\s*[\r\n]+([\s\S]*?)\r?\n---/.exec(text);
+      if (!match) return text; 
+      return text.slice(match[0].length).trim();
+    }
+
+    return(
+      <div className="max-w-3xl mx-auto px-6 py-12 text-[#3e5d58]">
+          {/* Back button */}
+          <button
+          onClick={() => navigate(-1)}
+          className="text-sm mb-8 opacity-70 hover:opacity-100 transition hover:underline"
+          >
+          ← go back
+          </button>
+  
+          {/* Blog content */}
+          <article className="prose prose-invert prose-lg mx-auto animate-fadeIn">
+          <ReactMarkdown>{content}</ReactMarkdown>
+          </article>
+      </div>
+    )
 
 }
 
