@@ -7,6 +7,7 @@ import ExperienceSection from './components/experience-section.jsx'
 import ProjectsSection from './components/projects-section.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BlogPage from './pages/blog-page.jsx';
+import BlogPost from './pages/blog-post.jsx';
 import GalleryPage from './pages/gallery-page.jsx';
 import useCurrentlyReading from './hooks/useCurrentlyReading.js';
 
@@ -87,6 +88,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='blog' element={<BlogPage />} />
+        <Route path= 'blog/:slug' element={<BlogPost />} />
         <Route path='gallery' element={<GalleryPage />} />
       </Routes>
     </Router>
