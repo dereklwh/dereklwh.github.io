@@ -52,7 +52,7 @@ const AboutSection = () => {
                 <li>Building Web Applications</li>
                 <li>Social Impact through Technology</li>
                 <li>Documenting my life through journaling</li>
-                <li>Continuous Learning and Growth</li>
+                <li>Continuous learning and growth, especially through failure</li>
                 <li>
                     <a  href='https://www.goodreads.com/review/list/182676242-derek?shelf=read'
                         target="_blank"
