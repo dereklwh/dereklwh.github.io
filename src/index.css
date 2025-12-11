@@ -31,7 +31,7 @@ body {
 
   .prose pre {
     @apply rounded mt-6 mb-4 px-6 py-6 text-sm font-mono
-    bg-gray-100 text-gray-700
+    bg-gray-700 text-gray-100
     dark:bg-gray-900/40 dark:text-gray-300;
   }
 

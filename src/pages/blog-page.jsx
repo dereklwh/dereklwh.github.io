@@ -66,38 +66,40 @@ const BlogPage = () => {
   
 
   return (
-    <div className="max-w-2xl mx-auto p-10 text-[#3e5d58]">
-      <h1 className="text-4xl font-bold mb-4">Blog</h1>
-      <p className='mb-6 text-lg'>just some thoughts</p>
-      <div className="space-y-4">
-        {posts.map((post) => (
-          <div
-            key={post.slug}
-            className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer"
-            onClick={() => navigate(`/blog/${post.slug}`)}
-          >
-            <h2 className="text-xl font-semibold">{post.title}</h2>
-            <p className="text-sm text-gray-500">{post.date}</p>
-            <p className="text-[#3e5d58]">Read more →</p>
-          </div>
-        //   <div className="flex gap-2 flex-wrap mt-2">
-        //   {post.tags.map((tag) => (
-        //     <span
-        //       key={tag}
-        //       className="px-2 py-1 text-xs"
-        //     >
-        //       {tag}
-        //     </span>
-        //   ))}
-        // </div>
-        ))}
+    <div className="bg-linear-65 from-white to-[#DDE5ED] min-h-screen">
+      <div className="max-w-2xl mx-auto p-10 text-[#3e5d58]">
+        <h1 className="text-4xl font-bold mb-4">Blog</h1>
+        <p className='mb-6 text-lg'>just some thoughts</p>
+        <div className="space-y-4">
+          {posts.map((post) => (
+            <div
+              key={post.slug}
+              className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer"
+              onClick={() => navigate(`/blog/${post.slug}`)}
+            >
+              <h2 className="text-xl font-semibold">{post.title}</h2>
+              <p className="text-sm text-gray-500">{post.date}</p>
+              <p className="text-[#3e5d58]">Read more →</p>
+            </div>
+          //   <div className="flex gap-2 flex-wrap mt-2">
+          //   {post.tags.map((tag) => (
+          //     <span
+          //       key={tag}
+          //       className="px-2 py-1 text-xs"
+          //     >
+          //       {tag}
+          //     </span>
+          //   ))}
+          // </div>
+          ))}
 
+        </div>
+        <button 
+            className='mt-8 px-10 py-2 bg-white border text-blue-600 rounded-lg  hover:text-white hover:bg-blue-600 border-blue-600 transition'
+            onClick={() => navigate('/')}>
+            Go Back
+        </button>
       </div>
-      <button 
-          className='mt-8 px-10 py-2 bg-white border text-blue-600 rounded-lg  hover:text-white hover:bg-blue-600 border-blue-600 transition'
-          onClick={() => navigate('/')}>
-          Go Back
-      </button>
     </div>
   );
 };

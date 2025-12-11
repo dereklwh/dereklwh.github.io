@@ -27,7 +27,8 @@ const BlogPost = () => {
     }
 
     return(
-      <div className="max-w-3xl mx-auto px-6 py-12 text-[#3e5d58]">
+      <div className="bg-linear-65 from-white to-[#DDE5ED] min-h-screen">
+        <div className="max-w-3xl mx-auto px-6 py-12 text-[#3e5d58]">
           {/* Back button */}
           <button
           onClick={() => navigate(-1)}
@@ -40,6 +41,7 @@ const BlogPost = () => {
           <article className="prose prose-invert prose-lg mx-auto animate-fadeIn">
           <ReactMarkdown>{content}</ReactMarkdown>
           </article>
+        </div>
       </div>
     )
 
