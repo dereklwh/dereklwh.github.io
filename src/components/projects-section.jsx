@@ -11,11 +11,13 @@ import adminPage from '../assets/projects/admin_page_login.png'
 import chatbot from '../assets/projects/chatbot2.png'
 import canucksWrapped from '../assets/projects/wrapped.png'
 import stormhacks from '../assets/projects/pomi_stormhacks.png'
+import socketProgramming from '../assets/projects/rdt_protocol.png'
 
 const ProjectsSection = () => {
     const [openIndex, setOpenIndex] = useState(null); // number | null
   
     const project = [
+      {src:socketProgramming, name: "Socket Programming Projects", year:"2025", desc: "Designed and implemented (1) HTTP and (2) Reliable Data Transfer (RDT) Protocols from scratch using web sockets in Python. Included advanced features such as proxy servers (1); and pipelining, Go-Back-N retransmisison, flow control, and AIMD congestion control (2).", url:"https://github.com/dereklwh/371-mp-web-socket"},
       {src:stormhacks, name: "Pomi", year:"2025", desc:"As a part of StormHacks 2025, developed Pomi, a Pomodoro Pet that uses computer vision to track your focus. Built using NextJS, SQLite3, Flask, and MediaPipe.", url: "https://github.com/braydenmsue/cacheroyale-pomodoro"},
       {src:website, name: "Personal Website", year:"2025", desc:"This website right here! CI/CD pipeline implemented for seamless updates.", url: "https://github.com/dereklwh/dereklwh.github.io"},
       {src:adminPage, name: "MOSAIC Admin Portal", year:"2025", desc:"Developed a content management portal enabling MOSAIC to edit and maintain program data referenced by the chatbot’s Neo4j graph database. Built with React, TypeScript, and Flask, featuring user authentication and custom APIs for seamless updates."},
