@@ -67,7 +67,8 @@ const BlogPage = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-10 text-[#3e5d58]">
-      <h1 className="text-4xl font-bold mb-4">Blog Page</h1>
+      <h1 className="text-4xl font-bold mb-4">Blog</h1>
+      <p className='mb-6 text-lg'>just some thoughts</p>
       <div className="space-y-4">
         {posts.map((post) => (
           <div
