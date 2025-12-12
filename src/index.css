@@ -17,6 +17,10 @@ body {
     @apply list-disc pl-6 space-y-2;
   }
 
+  .prose ol {
+    @apply list-decimal pl-6 space-y-2;
+  }
+
   .prose li {
     @apply leading-relaxed;
   }
@@ -26,7 +30,7 @@ body {
   }
 
   .prose strong {
-    @apply font-bold text-purple-400;
+    @apply font-bold text-[#92ACA0];
   }
 
   .prose pre {

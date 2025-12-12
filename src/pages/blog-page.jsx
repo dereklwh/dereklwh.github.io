@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Nav from "../components/nav";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ const BlogPage = () => {
   return (
     <div className="bg-linear-65 from-white to-[#DDE5ED] min-h-screen">
       <div className="max-w-2xl mx-auto p-10 text-[#3e5d58]">
-        <h1 className="text-4xl font-bold mb-4">Blog</h1>
+        <h1 className="text-4xl mt-10 font-bold mb-4">Blog</h1>
         <p className='mb-6 text-lg'>just some thoughts</p>
         <div className="space-y-4">
           {posts.map((post) => (
