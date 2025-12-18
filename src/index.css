@@ -13,6 +13,10 @@ body {
     @apply text-3xl font-semibold mt-6 mb-4;
   }
 
+  .prose h3 {
+    @apply text-2xl font-semibold mt-6 mb-4;
+  }
+
   .prose ul {
     @apply list-disc pl-6 space-y-2;
   }
@@ -37,6 +41,10 @@ body {
     @apply rounded mt-6 mb-4 px-6 py-6 text-sm font-mono
     bg-gray-700 text-gray-100
     dark:bg-gray-900/40 dark:text-gray-300;
+  }
+
+  .prose img {
+    @apply rounded-lg mt-6 mb-6;
   }
 
   
