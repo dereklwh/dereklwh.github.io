@@ -6,7 +6,7 @@ body {
 
 @layer components {
   .prose h1 {
-    @apply text-4xl font-bold mb-10;
+    @apply text-4xl font-bold mb-10 text-center;
   }
 
   .prose h2 {
@@ -30,7 +30,7 @@ body {
   }
 
   .prose p {
-    @apply mb-2 leading-relaxed;
+    @apply mb-4 leading-relaxed;
   }
 
   .prose strong {
@@ -44,7 +44,11 @@ body {
   }
 
   .prose img {
-    @apply rounded-lg mt-6 mb-6;
+    @apply rounded-lg mt-6 mb-6 max-h-100 mx-auto;
+  }
+
+  .prose a {
+    @apply text-[#92ACA0] underline;
   }
 
   
