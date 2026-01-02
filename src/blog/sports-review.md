@@ -1,6 +1,6 @@
 ---
 title: My 2025 as a Sports Fan
-date: 2025-12-30
+date: 2026-01-02
 tags: sports
 ---
 
