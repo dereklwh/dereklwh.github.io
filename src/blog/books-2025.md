@@ -8,7 +8,7 @@ tags: books, growth
 
 This year, I challenged myself with reading 15 books for the year. I can proudly say that as of last week, I have accomplished this goal with a couple of weeks remaining. I have explored a myriad of genres spanning from war philosophy to sports analytics to classics like 1984 and Harry Potter. While I wasn't on pace to meet my goal in the beginning of the year, my reading habits went up a notch throughout the past couple of months. Last year, My goal was a book a month and I was only 67% successful in completing it. This year, I was more ambitious and aimed for a higher goal, which effectively pushed me to read more than I ever had in my life. In this post, I will reflect on my 2025 reading challenge.
 
-![alt text](/src/assets/blog/bookschallenge.png)
+![alt text](/blog/bookschallenge.png)
 
 Here is a [**list**](https://www.goodreads.com/readingchallenges/gr/annual/2025/QTFDMU9BMUozMUJaTVgMjAyNQ) of the books that I read this year:
 
