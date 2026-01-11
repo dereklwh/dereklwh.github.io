@@ -3,10 +3,20 @@ import bpLogo from '../assets/blueprint-logo.svg';
 import CanucksLogo from '../assets/canucks-logo.png'
 import dwLogo from '../assets/dwave-logo.jpeg'
 import MatchstickLogo from '../assets/matchstick-logo.jpeg'
+import CorticoLogo from '../assets/cortico-logo.jpeg'
 
 const ExperienceSection = () => {
   // TODO: fetch experiences form a json instead
     const experiences = [
+        {
+            src: CorticoLogo,
+            company: 'Cortico Health',
+            location: 'Vancouver, BC',
+            title: 'Software Developer Intern',
+            time: 'Jan 2026 - Present',
+            desc: '- Product team'
+
+        },
         {
             src: bpLogo,
             company: 'SFU Blueprint',
