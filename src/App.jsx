@@ -1,5 +1,6 @@
 import './App.css'
 import Nav from './components/nav.jsx'
+import Footer from './components/footer.jsx'
 import { TypeAnimation } from 'react-type-animation'
 import heroImage from './assets/derek-notion-face.png'
 import AboutSection from './components/about-section.jsx'
@@ -78,6 +79,7 @@ function Home() {
         <ProjectsSection/>
       </section>
       {/* <section id="blog" className="scroll-mt-16 min-h-screen bg-white p-12">Blog</section> */}
+      <Footer/>
     </div>
   )
 }
