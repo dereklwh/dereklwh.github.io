@@ -51,8 +51,8 @@ export default function ExperienceCard({experiences}) {
                         </motion.div>
                         <motion.div
                         variants={rightItem}
-                        className='flex flex-col min-w-0 text-xs px-2 pl-4 justify-center whitespace-normal'>
-                            <p className='font-bold text-black mb-2'>{experience.title}</p>
+                        className='flex flex-col min-w-0 text-xs px-2 pl-4 justify-center whitespace-normal dark:text-[#e8f0ee]'>
+                            <p className='font-bold text-black dark:text-[#e8f0ee] mb-2'>{experience.title}</p>
                             <p className='mb-4 text-xs'>{experience.time}</p>
                             <ul className='list-disc list-inside'>
                                 {experience.desc.split("\n").map((item, i) => (

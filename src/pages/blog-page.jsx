@@ -71,20 +71,20 @@ const BlogPage = () => {
   
 
   return (
-    <div className="bg-linear-65 from-white to-[#DDE5ED] min-h-screen">
-      <div className="max-w-2xl mx-auto p-10 text-[#3e5d58]">
+    <div className="bg-linear-65 from-white to-[#DDE5ED] dark:from-[#1a2f2a] dark:to-[#1a2f2a] min-h-screen">
+      <div className="max-w-2xl mx-auto p-10 text-[#3e5d58] dark:text-[#e8f0ee]">
         <h1 className="text-4xl mt-10 font-bold mb-4">Blog</h1>
         <p className='mb-6 text-lg'>just some thoughts</p>
         <div className="space-y-4">
           {posts.map((post) => (
             <div
               key={post.slug}
-              className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer"
+              className="p-4 border rounded-lg hover:bg-gray-50 dark:border-[#2f4f47] dark:hover:bg-[#243b35] cursor-pointer"
               onClick={() => navigate(`/blog/${post.slug}`)}
             >
               <h2 className="text-xl font-semibold">{post.title}</h2>
-              <p className="text-sm text-gray-500">{post.date}</p>
-              <p className="text-[#3e5d58]">Read more →</p>
+              <p className="text-sm text-gray-500 dark:text-[#a3c4bc]">{post.date}</p>
+              <p className="text-[#3e5d58] dark:text-[#92ACA0]">Read more →</p>
             </div>
           //   <div className="flex gap-2 flex-wrap mt-2">
           //   {post.tags.map((tag) => (
@@ -100,7 +100,7 @@ const BlogPage = () => {
 
         </div>
         <button 
-            className='mt-8 px-10 py-2 bg-white border text-blue-600 rounded-lg  hover:text-white hover:bg-blue-600 border-blue-600 transition'
+            className='mt-8 px-10 py-2 bg-white dark:bg-[#243b35] border text-blue-600 dark:border-[#92ACA0] dark:text-[#92ACA0] rounded-lg hover:text-white hover:bg-blue-600 dark:hover:bg-[#92ACA0] dark:hover:text-white border-blue-600 transition'
             onClick={() => navigate('/')}>
             Go Back
         </button>

@@ -10,30 +10,29 @@ import {
 import { MdNightlight, MdLightMode } from "react-icons/md";
 
 export default function Nav() {
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useState(() => {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved === 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    });
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        if (document.documentElement.classList.contains('dark')) {
-            setIsDark(true);
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
-
-    }, []);
+    }, [isDark]);
 
     const toggleDarkMode = () => {
-        if (isDark) {
-            document.documentElement.classList.remove('dark');
-            setIsDark(false);
-            console.log('set to light mode');
-        } else {
-            document.documentElement.classList.add('dark');
-            setIsDark(true);
-            console.log('set to dark mode');
-        }
+        const next = !isDark;
+        setIsDark(next);
+        localStorage.setItem('theme', next ? 'dark' : 'light');
     }
 
     return (
-        <nav className="w-full fixed top-0 z-50 px-6 py-4 bg-[#DDE5ED]/50 backdrop-blur-md shadow-md">
+        <nav className="w-full fixed top-0 z-50 px-6 py-4 bg-[#DDE5ED]/50 dark:bg-[#1a2f2a]/50 backdrop-blur-md shadow-md">
             <div className="max-w-6xl mx-auto flex items-center">
                 {/* Logo / Name */}
                 <div className="text-2xl font-bold text-[#92ACA0] flex-grow">
@@ -49,12 +48,12 @@ export default function Nav() {
                         }
                         {/* <MdLightMode className="inline-block text-2xl" /> */}
                     </button>
-                    <a href="#" className="dark:text-white hover:text-[#3e5d58] transition">Derek Huang</a>
+                    <a href="#" className="dark:text-[#e8f0ee] hover:text-[#3e5d58] transition">Derek Huang</a>
                 </div>
 
 
                 {/* Navigation Links */}
-                <div className="hidden md:flex space-x-8 text-base font-bold">
+                <div className="hidden md:flex space-x-8 text-base font-bold dark:text-[#e8f0ee]">
                     <a href="#about" className="hover:text-[#92ACA0] transition">About</a>
                     <a href="#experience" className="hover:text-[#92ACA0] transition">Experience</a>
                     <a href="#projects" className="hover:text-[#92ACA0] transition">Projects</a>
@@ -64,21 +63,20 @@ export default function Nav() {
                     <Link to='/gallery' className="hover:text-[#92ACA0] transition">
                         Gallery
                     </Link>
-                    {/* <a href="#blog" className="hover:text-[#92ACA0] transition">Blog</a> */}
                 </div>
 
                 {/* hamburger for mobile */}
                 <div className='flex md:hidden'>
-                    <button 
+                    <button
                      onClick={() => setIsOpen(!isOpen)}
-                     className='text-black hover:text-[#3e5d58] transition'>
+                     className='text-black dark:text-[#e8f0ee] hover:text-[#3e5d58] transition'>
                         {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
                     </button>
                 </div>
             </div>
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden mt-2 space-y-2 text-base font-bold text-center">
+                <div className="md:hidden mt-2 space-y-2 text-base font-bold text-center dark:text-[#e8f0ee]">
                     <a href="#about" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>About</a>
                     <a href="#experience" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>Experience</a>
                     <a href="#projects" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>Projects</a>
