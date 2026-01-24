@@ -41,6 +41,12 @@ const BlogPost = () => {
           <article className="prose prose-invert prose-lg mx-auto animate-fadeIn">
           <ReactMarkdown>{content}</ReactMarkdown>
           </article>
+          <button
+          onClick={() => navigate(-1)}
+          className="text-sm mt-4 opacity-70 hover:opacity-100 transition hover:underline"
+          >
+          ← go back
+          </button>
         </div>
       </div>
     )
