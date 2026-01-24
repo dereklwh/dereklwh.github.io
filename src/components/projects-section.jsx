@@ -38,7 +38,7 @@ const ProjectsSection = () => {
         {project.map((proj, index) => {
           const isOpen = openIndex === index;
           return (
-            <div key={index} className='flex-col items-center border-1 border-transparent hover:border-gray-300 shadow-md rounded-md'>
+            <div key={index} className='flex-col items-center border-1 border-transparent hover:border-gray-300 dark:hover:border-[#2f4f47] shadow-md rounded-md dark:bg-[#243b35]'>
               {/* clickable image area */}
               <div
                 className='group relative w-full mb-4 cursor-pointer outline-none border-b-2 border-[#92ACA0]'
@@ -83,7 +83,7 @@ const ProjectsSection = () => {
               </div>
   
               {/* description */}
-              <div className='pl-4 pb-4'>
+              <div className='pl-4 pb-4 dark:text-[#e8f0ee]'>
                 <span className='text-base mb-4 font-bold'>{proj.name}</span>
                 <span className="mx-2 text-base text-[#92ACA0]">&bull;</span>
                 <span className='text-base mb-2 text-[#92ACA0] font-normal'>{proj.year}</span>
