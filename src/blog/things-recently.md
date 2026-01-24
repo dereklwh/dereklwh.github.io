@@ -4,11 +4,13 @@ date: 2026-01-23
 tags: random
 ---
 
-# My Things that Amused me Today
+# Some things that amused me today
 
-![Hughes](/blog/cat_sideye.jpg)
+The picture below randomly popped into my head today.
 
-I was also reading documentation for Riot.JS and stumbled upon this which was kinda interesting:
+![Cat](/blog/cat_sideye.jpg)
+
+I was also reading documentation for Riot.js for work today and stumbled upon this which was kinda interesting:
 
 #### Zen of Python by **Tim Peters**
 
@@ -49,3 +51,5 @@ I was also reading documentation for Riot.JS and stumbled upon this which was ki
 > If the implementation is easy to explain, it may be a good idea.
 > 
 > Namespaces are one honking great idea – let’s do more of those!
+
+That's all.
