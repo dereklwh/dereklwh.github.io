@@ -1,5 +1,6 @@
 import { FaGithub } from 'react-icons/fa'
 import { useState } from "react";
+import Pagination from './Pagination';
 import fluentU from '../assets/projects/FluentU.png'
 import dcc from '../assets/projects/game_project.png'
 import crosswatch from '../assets/projects/crosswatch.png'
@@ -15,9 +16,12 @@ import socketProgramming from '../assets/projects/rdt_protocol.png'
 import jdanalytics from '../assets/projects/jdanalytics.png'
 import studytype from '../assets/projects/studytype.png'
 
+const ITEMS_PER_PAGE = 6;
+
 const ProjectsSection = () => {
     const [openIndex, setOpenIndex] = useState(null); // number | null
-  
+    const [currentPage, setCurrentPage] = useState(1);
+
     const project = [
       {src:jdanalytics, name: "jdanalytics (In Development)", year:"2026", desc:"Developed a full-stack hockey analytics platform featuring elegant data visualizations and advanced statistical modeling. Implements automated daily cron jobs for real-time data updates. Built with ReactJS, TailwindCSS, Flask, and PostgreSQL." , url:"https://github.com/dereklwh/jdanalytics"},
       {src:studytype, name: "StudyType", year:"2026", desc:"An AI-enhanced typing game designed to improve studying efficiency through gamification. Co-developed using Claude Code to explore AI-assisted development workflows. Built with TypeScript and JavaScript.", url:"https://github.com/dereklwh/study-type" },
@@ -36,28 +40,40 @@ const ProjectsSection = () => {
     ]
   
     const toggle = (i) => setOpenIndex((prev) => (prev === i ? null : i));
-  
+
+    // Pagination calculations
+    const totalPages = Math.ceil(project.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paginatedProjects = project.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+    const handlePageChange = (page) => {
+      setCurrentPage(page);
+      setOpenIndex(null); // Close any open project descriptions when changing pages
+    };
+
     return (
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-stretch gap-8'>
-        {project.map((proj, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <div key={index} className='flex-col items-center border-1 border-transparent hover:border-gray-300 dark:hover:border-[#2f4f47] shadow-md rounded-md dark:bg-[#243b35]'>
-              {/* clickable image area */}
-              <div
-                className='group relative w-full mb-4 cursor-pointer outline-none border-b-2 border-[#92ACA0]'
-                role="button"
-                tabIndex={0}
-                aria-pressed={isOpen}
-                onClick={() => toggle(index)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggle(index);
-                  }
-                  if (e.key === 'Escape') setOpenIndex(null);
-                }}
-              >
+      <div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-stretch gap-8'>
+          {paginatedProjects.map((proj, index) => {
+            const globalIndex = startIndex + index;
+            const isOpen = openIndex === globalIndex;
+            return (
+              <div key={globalIndex} className='flex-col items-center border-1 border-transparent hover:border-gray-300 dark:hover:border-[#2f4f47] shadow-md rounded-md dark:bg-[#243b35]'>
+                {/* clickable image area */}
+                <div
+                  className='group relative w-full mb-4 cursor-pointer outline-none border-b-2 border-[#92ACA0]'
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={isOpen}
+                  onClick={() => toggle(globalIndex)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggle(globalIndex);
+                    }
+                    if (e.key === 'Escape') setOpenIndex(null);
+                  }}
+                >
                 <img
                   src={proj.src}
                   className={[
@@ -107,9 +123,15 @@ const ProjectsSection = () => {
                   )}
                 </div>
               </div>
-            </div>
-          )
-        })}
+              </div>
+            )
+          })}
+        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
     )
 }
