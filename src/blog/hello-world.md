@@ -1,7 +1,7 @@
 ---
 title: Hello World
 date: 2025-12-10
-tags: hey
+tags: intro
 ---
 # Hello!
 

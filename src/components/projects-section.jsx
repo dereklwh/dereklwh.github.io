@@ -1,6 +1,7 @@
 import { FaGithub } from 'react-icons/fa'
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Pagination from './Pagination';
+import FilterBar from './FilterBar';
 import fluentU from '../assets/projects/FluentU.png'
 import dcc from '../assets/projects/game_project.png'
 import crosswatch from '../assets/projects/crosswatch.png'
@@ -21,38 +22,56 @@ const ITEMS_PER_PAGE = 6;
 const ProjectsSection = () => {
     const [openIndex, setOpenIndex] = useState(null); // number | null
     const [currentPage, setCurrentPage] = useState(1);
+    const [activeTag, setActiveTag] = useState(null);
 
     const project = [
-      {src:jdanalytics, name: "jdanalytics (In Development)", year:"2026", desc:"Developed a full-stack hockey analytics platform featuring elegant data visualizations and advanced statistical modeling. Implements automated daily cron jobs for real-time data updates. Built with ReactJS, TailwindCSS, Flask, and PostgreSQL." , url:"https://github.com/dereklwh/jdanalytics"},
-      {src:studytype, name: "StudyType", year:"2026", desc:"An AI-enhanced typing game designed to improve studying efficiency through gamification. Co-developed using Claude Code to explore AI-assisted development workflows. Built with TypeScript and JavaScript.", url:"https://github.com/dereklwh/study-type" },
-      {src:socketProgramming, name: "Socket Programming Projects", year:"2025", desc: "Designed and implemented (1) HTTP and (2) Reliable Data Transfer (RDT) Protocols from scratch using web sockets in Python. Included advanced features such as proxy servers (1); and pipelining, Go-Back-N retransmisison, flow control, and AIMD congestion control (2).", url:"https://github.com/dereklwh/371-mp-web-socket"},
-      {src:stormhacks, name: "Pomi", year:"2025", desc:"As a part of StormHacks 2025, developed Pomi, a Pomodoro Pet that uses computer vision to track your focus. Built using NextJS, SQLite3, Flask, and MediaPipe.", url: "https://github.com/braydenmsue/cacheroyale-pomodoro"},
-      {src:website, name: "Personal Website", year:"2025", desc:"This website right here! CI/CD pipeline implemented for seamless updates.", url: "https://github.com/dereklwh/dereklwh.github.io"},
-      {src:adminPage, name: "MOSAIC Admin Portal", year:"2025", desc:"Developed a content management portal enabling MOSAIC to edit and maintain program data referenced by the chatbot’s Neo4j graph database. Built with React, TypeScript, and Flask, featuring user authentication and custom APIs for seamless updates."},
-      {src:assistiveKeyboard, name: "AI Assistive Keyboard", year:"2025", desc:"Developed an assistive keyboard aimed to help patients with communication disabilities. Uses NLP interface that facilitates common language interactions, eye tracking, and speech recognition. Built using ReactJS, TailwindCSS, and Python.", url:"https://github.com/sfu-cmpt340/2025_1_project_18?tab=readme-ov-file#project-overview"},
-      {src:nhlTravelAnalysis, name: "NHL Travel Analysis", year:"2025", desc: "Built a modular Python data pipeline to process over 10,000 rows of NHL schedule and geospatial data to analyze team performance during travel. Produced findings in a report with visualizations.", url:"https://github.com/dereklwh/nhl-travel-analysis/blob/main/project-report.pdf"},
-      {src:canucksWrapped, name: "Canucks Wrapped", year:"2025", desc:"Built and led the data pipeline powering Canucks Wrapped. Processed 140k+ fan attendance records with Python and NHL API to generate personalized season recaps for 20k+ unique fans."}, 
-      {src:chatbot, name: "MOSAIC Chatbot", year:"2024", desc:"Developed an AI chatbot with SFU Blueprint for MOSAIC that improves accessibility for newcomers with real-time program guidance. Built with Flask, Neo4j, and OpenAI models, and recognized as a Top 4 finalist in the SFU CS Diversity Award."},
-      {src:crosswatch, name: "CrossWatch", year: "2024", desc: "A movie sharing platform that allows users to create and share watchlists. Competing in the Produhacks hackathon. Built using MERN stack, material-ui, and movieDB API.", url: "https://github.com/jeffre-h/CrossWatch"},
-      {src: fluentU, name: "FluentU", year: "2023",desc:" An interactive language learning app with quizzes and customizable flashcards powered by Google Cloud Translation API. Developed in Kotlin", url:"https://github.com/dereklwh/FluentU"},
-      {src: dcc, name: "Dead City Cronicles", year:"2023", desc:"An engaging 2D maze game where players navigate through intricate mazes while avoiding smart zombies. Developed using Java and OOP principles. Unit tests implemented using JUnit.", url:"https://github.com/dereklwh/DeadCityChronicles"},
-      {src:hospitalBot, name: "Hospital Bot", year: "2022", desc: "SMS-based chatbot that recommends nearest hospitals to users based on their location. Live up-to-date hospital wait times are scraped using BeautifulSoup and Selenium. Developed using Python, Twilio, Google Maps API and deployed on Heroku.", url:"https://github.com/jeffre-h/HospitalBot"}
+      {src:jdanalytics, name: "jdanalytics (In Development)", year:"2026", desc:"Developed a full-stack hockey analytics platform featuring elegant data visualizations and advanced statistical modeling. Implements automated daily cron jobs for real-time data updates. Built with ReactJS, TailwindCSS, Flask, and PostgreSQL." , url:"https://github.com/dereklwh/jdanalytics", tags: ["full-stack", "data"]},
+      {src:studytype, name: "StudyType", year:"2026", desc:"An AI-enhanced typing game designed to improve studying efficiency through gamification. Co-developed using Claude Code to explore AI-assisted development workflows. Built with TypeScript and JavaScript.", url:"https://github.com/dereklwh/study-type", tags: ["ai", "web"] },
+      {src:socketProgramming, name: "Socket Programming Projects", year:"2025", desc: "Designed and implemented (1) HTTP and (2) Reliable Data Transfer (RDT) Protocols from scratch using web sockets in Python. Included advanced features such as proxy servers (1); and pipelining, Go-Back-N retransmisison, flow control, and AIMD congestion control (2).", url:"https://github.com/dereklwh/371-mp-web-socket", tags: ["systems"]},
+      {src:stormhacks, name: "Pomi", year:"2025", desc:"As a part of StormHacks 2025, developed Pomi, a Pomodoro Pet that uses computer vision to track your focus. Built using NextJS, SQLite3, Flask, and MediaPipe.", url: "https://github.com/braydenmsue/cacheroyale-pomodoro", tags: ["full-stack", "hackathon"]},
+      {src:website, name: "Personal Website", year:"2025", desc:"This website right here! CI/CD pipeline implemented for seamless updates.", url: "https://github.com/dereklwh/dereklwh.github.io", tags: ["web"]},
+      {src:adminPage, name: "MOSAIC Admin Portal", year:"2025", desc:"Developed a content management portal enabling MOSAIC to edit and maintain program data referenced by the chatbot's Neo4j graph database. Built with React, TypeScript, and Flask, featuring user authentication and custom APIs for seamless updates.", tags: ["full-stack"]},
+      {src:assistiveKeyboard, name: "AI Assistive Keyboard", year:"2025", desc:"Developed an assistive keyboard aimed to help patients with communication disabilities. Uses NLP interface that facilitates common language interactions, eye tracking, and speech recognition. Built using ReactJS, TailwindCSS, and Python.", url:"https://github.com/sfu-cmpt340/2025_1_project_18?tab=readme-ov-file#project-overview", tags: ["ai", "web"]},
+      {src:nhlTravelAnalysis, name: "NHL Travel Analysis", year:"2025", desc: "Built a modular Python data pipeline to process over 10,000 rows of NHL schedule and geospatial data to analyze team performance during travel. Produced findings in a report with visualizations.", url:"https://github.com/dereklwh/nhl-travel-analysis/blob/main/project-report.pdf", tags: ["data"]},
+      {src:canucksWrapped, name: "Canucks Wrapped", year:"2025", desc:"Built and led the data pipeline powering Canucks Wrapped. Processed 140k+ fan attendance records with Python and NHL API to generate personalized season recaps for 20k+ unique fans.", tags: ["data"]},
+      {src:chatbot, name: "MOSAIC Chatbot", year:"2024", desc:"Developed an AI chatbot with SFU Blueprint for MOSAIC that improves accessibility for newcomers with real-time program guidance. Built with Flask, Neo4j, and OpenAI models, and recognized as a Top 4 finalist in the SFU CS Diversity Award.", tags: ["ai", "full-stack"]},
+      {src:crosswatch, name: "CrossWatch", year: "2024", desc: "A movie sharing platform that allows users to create and share watchlists. Competing in the Produhacks hackathon. Built using MERN stack, material-ui, and movieDB API.", url: "https://github.com/jeffre-h/CrossWatch", tags: ["full-stack", "hackathon"]},
+      {src: fluentU, name: "FluentU", year: "2023",desc:" An interactive language learning app with quizzes and customizable flashcards powered by Google Cloud Translation API. Developed in Kotlin", url:"https://github.com/dereklwh/FluentU", tags: ["mobile"]},
+      {src: dcc, name: "Dead City Cronicles", year:"2023", desc:"An engaging 2D maze game where players navigate through intricate mazes while avoiding smart zombies. Developed using Java and OOP principles. Unit tests implemented using JUnit.", url:"https://github.com/dereklwh/DeadCityChronicles", tags: ["games"]},
+      {src:hospitalBot, name: "Hospital Bot", year: "2022", desc: "SMS-based chatbot that recommends nearest hospitals to users based on their location. Live up-to-date hospital wait times are scraped using BeautifulSoup and Selenium. Developed using Python, Twilio, Google Maps API and deployed on Heroku.", url:"https://github.com/jeffre-h/HospitalBot", tags: ["web", "ai"]}
     ]
   
     const toggle = (i) => setOpenIndex((prev) => (prev === i ? null : i));
 
+    const uniqueTags = useMemo(() => {
+      const tagSet = new Set(project.flatMap((p) => p.tags));
+      return [...tagSet];
+    }, []);
+
+    const filteredProjects = useMemo(() => {
+      if (!activeTag) return project;
+      return project.filter((p) => p.tags.includes(activeTag));
+    }, [activeTag]);
+
+    const handleTagChange = (tag) => {
+      setActiveTag(tag);
+      setCurrentPage(1);
+      setOpenIndex(null);
+    };
+
     // Pagination calculations
-    const totalPages = Math.ceil(project.length / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const paginatedProjects = project.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const paginatedProjects = filteredProjects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
     const handlePageChange = (page) => {
       setCurrentPage(page);
-      setOpenIndex(null); // Close any open project descriptions when changing pages
+      setOpenIndex(null);
     };
 
     return (
       <div>
+        <FilterBar tags={uniqueTags} activeTag={activeTag} onTagChange={handleTagChange} />
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-stretch gap-8'>
           {paginatedProjects.map((proj, index) => {
             const globalIndex = startIndex + index;
@@ -107,6 +126,17 @@ const ProjectsSection = () => {
                 <span className='text-base mb-4 font-bold'>{proj.name}</span>
                 <span className="mx-2 text-base text-[#92ACA0]">&bull;</span>
                 <span className='text-base mb-2 text-[#92ACA0] font-normal'>{proj.year}</span>
+                <div className="flex flex-wrap gap-1.5 mt-1 mb-1">
+                  {proj.tags.map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={(e) => { e.stopPropagation(); handleTagChange(tag); }}
+                      className="px-2.5 py-0.5 text-xs rounded-full bg-[#92ACA0]/15 text-[#92ACA0] font-medium transition-all duration-200 hover:bg-[#92ACA0]/30 hover:scale-105 cursor-pointer"
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
                 <div className='flex items-center text-base font-medium'>
                   {proj.url ? (
                     <a
