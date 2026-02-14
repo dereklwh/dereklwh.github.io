@@ -1,7 +1,7 @@
 ---
 title: On Failure
 date: 2025-12-10
-tags: failure, growth
+tags: reflection, personal growth
 ---
 
 # On Failure

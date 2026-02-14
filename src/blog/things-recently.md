@@ -1,7 +1,7 @@
 ---
 title: Highlights to my day today
 date: 2026-01-23
-tags: random
+tags: life
 ---
 
 # Some things that amused me today

@@ -1,7 +1,7 @@
 ---
 title: Book Challenge 2025
 date: 2025-12-16
-tags: books, growth
+tags: books, personal growth
 ---
 
 # Reading Challenge 2025
