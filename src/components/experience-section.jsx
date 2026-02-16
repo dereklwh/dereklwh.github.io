@@ -14,7 +14,10 @@ const ExperienceSection = () => {
             location: 'Vancouver, BC',
             title: 'Software Developer Intern',
             time: 'Jan 2026 - Present',
-            desc: '- Product team'
+            desc: 
+            'Delivered 15+ PRs across bug fixes, backend features, and UI improvements in a Django/Riot.js healthcare platform serving real clinics and patients\n' +
+            'Built an end-to-end fax invoicing feature including PDF generation, third-party API integrations, and webhook-driven communication pipelines\n' +
+            'Shipped production hotfixes and authored cron jobs, database migrations, and automated test suites within a trunk-based CI/CD workflow'
 
         },
         {
@@ -26,7 +29,7 @@ const ExperienceSection = () => {
             desc:
               '- Built AI chatbot for MOSAIC (RAG + OpenAI) and full-stack admin portal with React/Tailwind/Firebase\n' +
               '- Designed REST APIs with Flask + Neo4j for real-time data sync\n' +
-              '- Set up CI/CD with GitHub Actions, Docker, and Vercel'
+              '- Set up CI/CD pipeline with GitHub Actions, Docker, Render, and Vercel'
           },
         {
           src: CanucksLogo,
