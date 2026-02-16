@@ -4,6 +4,7 @@ import { SiFlask, SiCplusplus, SiTypescript, SiScikitlearn, SiTailwindcss, SiNeo
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoDocumentText } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import coffeeImage from '../assets/coffee.jpg';
 import canucksTeamPhoto from '../assets/canucks-bi-team.jpg';
 import blueprintTeamPhoto from '../assets/blueprint.jpg';
@@ -29,9 +30,9 @@ const AboutSection = () => {
     ];
     
     const galleryImages = [
-        { src: coffeeImage,  caption: "Working part time as a Barista @ Matchstick Coffee Roasters" },
-        { src: canucksTeamPhoto, caption: "With the Vancouver Canucks BI Team! 🏒" },
-        { src: blueprintTeamPhoto, caption: "With the amazing Blueprint team! " },
+        { src: coffeeImage,  caption: "Where I learned to make a cortado under pressure." },
+        { src: canucksTeamPhoto, caption: "Turning hockey data into stories with the Canucks BI team." },
+        { src: blueprintTeamPhoto, caption: "Shipping software that matters, with people who care." },
         // Add more images as needed
     ];
 
@@ -87,13 +88,21 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-white dark:bg-[#243b35] rounded-lg shadow-md col-span-1">
             <div className="p-6 pb-2">
-                <h3 className="font-bold text-2xl dark:text-[#e8f0ee]">Gallery</h3>
-                <p className='text-base text-[#92ACA0] text-sm'>Pictures!!</p>
+                <h3 className="font-bold text-2xl dark:text-[#e8f0ee]">Life Outside Code</h3>
+                <p className='text-base text-[#92ACA0] text-sm'>Moments that shape how I collaborate, think, and build.</p>
             </div>
             <div className="h-1 w-full bg-[#92ACA0]"/>
             {/* <img src={coffeeImage} className='rounded-lg h-64 w-full object-cover'/> */}
 
             <GalleryCarousel images={galleryImages} />
+            <div className="px-6 pb-6 pt-4">
+                <Link
+                  to="/gallery"
+                  className="inline-flex items-center rounded-lg border border-[#92ACA0] px-4 py-2 text-sm font-semibold text-[#3e5d58] dark:text-[#e8f0ee] hover:bg-[#92ACA0]/20 transition-colors"
+                >
+                  View Full Gallery
+                </Link>
+            </div>
             
         </div>
         <div className="p-6 bg-white dark:bg-[#243b35] rounded-lg shadow-md col-span-1">
