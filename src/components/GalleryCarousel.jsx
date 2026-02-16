@@ -4,19 +4,52 @@ import { FaAngleLeft, FaAngleRight} from "react-icons/fa";
 
 export default function GalleryCarousel({ images, auto = true, interval = 3500 }) {
   const [i, setI] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
 
   useEffect(() => {
-    if (!auto) return;
+    if (!auto || isPaused || images.length <= 1) return;
     const t = setInterval(() => setI(prev => (prev + 1) % images.length), interval);
     return () => clearInterval(t);
-  }, [images.length, auto, interval]);
+  }, [images.length, auto, interval, isPaused]);
 
   const go = (dir) => {
     setI(prev => (prev + dir + images.length) % images.length);
   };
 
+  const minSwipeDistance = 40;
+  const onTouchStart = (e) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+  const onTouchMove = (e) => setTouchEndX(e.targetTouches[0].clientX);
+  const onTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > minSwipeDistance) go(1);
+    if (distance < -minSwipeDistance) go(-1);
+  };
+
+  if (!images?.length) return null;
+
   return (
-    <div className="relative overflow-hidden rounded-b-lg bg-white">
+    <div
+      className="relative overflow-hidden rounded-b-lg bg-white dark:bg-[#1c2f2b] focus-within:ring-2 focus-within:ring-[#92ACA0]/70"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowLeft') go(-1);
+        if (e.key === 'ArrowRight') go(1);
+      }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      aria-label="Photo carousel"
+    >
       {/* Slides */}
       <div
         className="flex transition-transform duration-500"
@@ -28,12 +61,11 @@ export default function GalleryCarousel({ images, auto = true, interval = 3500 }
               src={img.src}
               alt={img.caption}
               className="h-64 w-full object-cover transition duration-500 group-hover:blur-sm"
+              loading="lazy"
             />
-            {/* Overlay on hover */}
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center 
-                            opacity-0 group-hover:opacity-100 transition duration-300">
-              <div className="absolute inset-0 bg-black/40" />
-              <p className="relative z-10 px-4 py-2 text-center text-white text-sm md:text-base font-medium">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0">
+              <div className="h-28 bg-gradient-to-t from-black/70 to-transparent" />
+              <p className="absolute bottom-3 left-3 right-3 text-white text-sm md:text-base font-medium">
                 {img.caption}
               </p>
             </div>
@@ -58,6 +90,10 @@ export default function GalleryCarousel({ images, auto = true, interval = 3500 }
       >
         <FaAngleRight/>
       </button>
+
+      <p className="absolute top-2 right-2 rounded-full bg-black/45 px-2 py-1 text-xs text-white">
+        {i + 1}/{images.length}
+      </p>
 
       {/* Dots */}
       <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
