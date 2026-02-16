@@ -43,7 +43,7 @@ function Home() {
               >
                 Simon Fraser University
               </a>{' '}
-              and software developer for MOSAIC&apos;s AI initiatives.
+              and software developer for MOSAIC and Cortico Health.
             </p>
             <TypeAnimation
               sequence={[
