@@ -36,7 +36,7 @@ const GalleryPage = () => {
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch mb-5'>
                     {v_images.map((src, index) => (
                         <div key={index}>
-                            <img src={src} className='h-full w-full object-cover'></img>
+                            <img src={src} loading="lazy" className='h-full w-full object-cover'></img>
                         </div>
                     ))}
                 </div>
@@ -46,7 +46,7 @@ const GalleryPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 items-stretch gap-5">
                     {h_images.map((src, index) => (
                             <div key={index}>
-                                <img src={src} className='h-full w-full object-cover'></img>
+                                <img src={src} loading="lazy" className='h-full w-full object-cover'></img>
                             </div>
                         ))}
                 </div>
