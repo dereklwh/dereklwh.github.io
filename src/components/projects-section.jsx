@@ -16,6 +16,7 @@ import stormhacks from '../assets/projects/pomi_stormhacks.png'
 import socketProgramming from '../assets/projects/rdt_protocol.png'
 import jdanalytics from '../assets/projects/jdanalytics.png'
 import studytype from '../assets/projects/studytype.png'
+import customshell from '../assets/projects/customshell.png'
 
 const ITEMS_PER_PAGE = 6;
 
@@ -25,6 +26,7 @@ const ProjectsSection = () => {
     const [activeTag, setActiveTag] = useState(null);
 
     const project = [
+      {src:customshell, name: "Custom Shell", year:"2026", desc:"Built a Unix shell in C using Linux system calls (fork, exec, waitpid, signal). Implemented process management, background execution, command history, internal commands, and SIGINT handling. Developed with CMake, ensuring robust error handling and zero memory leaks through proper resource management.", tags: ["systems"]}, 
       {src:jdanalytics, name: "jdanalytics (In Development)", year:"2026", desc:"Developed a full-stack hockey analytics platform featuring elegant data visualizations and advanced statistical modeling. Implements automated daily cron jobs for real-time data updates. Built with ReactJS, TailwindCSS, Flask, and PostgreSQL." , url:"https://github.com/dereklwh/jdanalytics", tags: ["full-stack", "data"]},
       {src:studytype, name: "StudyType", year:"2026", desc:"An AI-enhanced typing game designed to improve studying efficiency through gamification. Co-developed using Claude Code to explore AI-assisted development workflows. Built with TypeScript and JavaScript.", url:"https://github.com/dereklwh/study-type", tags: ["ai", "web"] },
       {src:socketProgramming, name: "Socket Programming Projects", year:"2025", desc: "Designed and implemented (1) HTTP and (2) Reliable Data Transfer (RDT) Protocols from scratch using web sockets in Python. Included advanced features such as proxy servers (1); and pipelining, Go-Back-N retransmisison, flow control, and AIMD congestion control (2).", url:"https://github.com/dereklwh/371-mp-web-socket", tags: ["systems"]},

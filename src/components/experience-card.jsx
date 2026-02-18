@@ -63,6 +63,8 @@ function ExperienceItem({ experience }) {
                 variants={rightItem}
                 className='flex flex-col min-w-0 text-xs px-2 pl-4 justify-center whitespace-normal dark:text-[#e8f0ee]'
             >
+                <p className='font-bold text-sm mb-0.5 md:hidden'>{experience.company}</p>
+                <p className='text-xs text-[#92ACA0] mb-2 md:hidden'>{experience.location}</p>
                 <p className='font-bold text-black dark:text-[#e8f0ee] mb-2'>{experience.title}</p>
                 <p className='mb-4 text-xs'>{experience.time}</p>
                 <ul className='list-disc list-inside'>

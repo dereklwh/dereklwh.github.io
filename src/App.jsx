@@ -24,13 +24,11 @@ function Home() {
     <div className="dark:bg-[#1a2f2a] dark:bg-none dark:text-[#e8f0ee] bg-linear-65 from-white to-[#DDE5ED] text-[#3e5d58] pt-16">
       <Nav/>
       {/* hero */}
-      <section className="relative isolate p-8 md:p-12 mx-auto md:max-w-4/5 min-h-screen flex items-center">
-        <div className="absolute -z-10 -top-16 -left-12 h-56 w-56 rounded-full bg-[#92ACA0]/25 blur-3xl" />
-        <div className="absolute -z-10 bottom-12 right-0 h-44 w-44 rounded-full bg-[#6f8a84]/25 blur-3xl" />
+      <section className="relative isolate overflow-hidden p-8 md:p-12 mx-auto md:max-w-4/5 min-h-[100dvh] flex items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full">
           <div>
             <p className="text-base uppercase tracking-wider text-[#92ACA0] mb-3">Hello, I&apos;m Derek Huang</p>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
               I build data-driven products for social impact.
             </h1>
             <p className="text-lg mb-4">
@@ -96,11 +94,11 @@ function Home() {
               </p>
             ) : null}
           </div>
-          <div className="flex justify-center md:justify-end relative">
+          <div className="flex justify-center md:justify-end relative order-first md:order-last">
             <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-64 md:w-72 h-64 md:h-72 rounded-full bg-gradient-to-tr from-[#92ACA0]/40 via-[#6f8a84]/30 to-[#92ACA0]/40 blur-2xl animate-spin-slow" />
             <img
               src={heroImage}
-              className="relative w-72 md:w-full max-w-sm h-auto rounded-3xl shadow-xl ring-1 ring-[#92ACA0]/30"
+              className="relative w-56 md:w-full max-w-sm h-auto rounded-3xl shadow-xl ring-1 ring-[#92ACA0]/30"
               alt="Portrait of Derek Huang"
             />
           </div>
