@@ -1,5 +1,6 @@
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Nav from '../components/nav.jsx'
+import BackButton from '../components/BackButton.jsx'
 import photo1 from '../assets/gallery/0002_25A.jpg'
 import photo2 from '../assets/gallery/001.jpg'
 import photo3 from '../assets/gallery/002.jpg'
@@ -16,6 +17,53 @@ import photo13 from '../assets/gallery/015.jpeg'
 import photo14 from '../assets/gallery/mygoat.jpeg'
 
 
+const RevealImage = ({ src, alt, order }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const imgRef = useRef(null);
+
+    useEffect(() => {
+        const node = imgRef.current;
+        if (!node || isVisible) return;
+
+        if (typeof IntersectionObserver === 'undefined') {
+            setIsVisible(true);
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            {
+                threshold: 0.12,
+                rootMargin: '0px 0px -6% 0px',
+            }
+        );
+
+        observer.observe(node);
+
+        return () => observer.disconnect();
+    }, [isVisible]);
+
+    return (
+        <div
+            ref={imgRef}
+            className={`transition-opacity duration-300 ease-in motion-reduce:transition-none ${
+                isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+                transitionDelay: isVisible ? `${Math.min(order * 45, 500)}ms` : '0ms',
+            }}
+        >
+            <img src={src} alt={alt} loading="lazy" className='h-full w-full object-cover'></img>
+        </div>
+    );
+};
+
+
 const GalleryPage = () => {
     const navigate = useNavigate();
 
@@ -28,16 +76,22 @@ const GalleryPage = () => {
             {/* <Nav/> */}
             {/* if l > w, then portrait and insert into top div*/}
             <div className="flex flex-col items-stretch text-white p-5 md:p-15">
-                <button className="text-white hover:text-[#3e5d58] hover:underline px-4 py-2 inline-flex" onClick={() => navigate(-1)}>
-                    go back
-                </button>
+                <BackButton
+                    label="Back"
+                    tone="overlay"
+                    className="self-start mb-3"
+                    onClick={() => navigate(-1)}
+                />
                 <h1 className='text-4xl self-center'>Gallery</h1>
                 <p className='self-center mb-6 text-[#92ACA0]'>photos I like and photos of stuff I like</p>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch mb-5'>
                     {v_images.map((src, index) => (
-                        <div key={index}>
-                            <img src={src} loading="lazy" className='h-full w-full object-cover'></img>
-                        </div>
+                        <RevealImage
+                            key={index}
+                            src={src}
+                            alt={`Gallery portrait photo ${index + 1}`}
+                            order={index}
+                        />
                     ))}
                 </div>
                 {/* <div className='p-20 rounded-xl bg-red-100 text-center'>
@@ -45,9 +99,12 @@ const GalleryPage = () => {
                                 {/* if w > l, then landscape and insert into bottom div*/}
                 <div className="grid grid-cols-1 md:grid-cols-2 items-stretch gap-5">
                     {h_images.map((src, index) => (
-                            <div key={index}>
-                                <img src={src} loading="lazy" className='h-full w-full object-cover'></img>
-                            </div>
+                            <RevealImage
+                                key={index}
+                                src={src}
+                                alt={`Gallery landscape photo ${index + 1}`}
+                                order={v_images.length + index}
+                            />
                         ))}
                 </div>
             </div>

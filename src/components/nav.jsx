@@ -32,8 +32,8 @@ export default function Nav() {
     }
 
     return (
-        <nav className="w-full fixed top-0 z-50 px-6 py-4 bg-[#DDE5ED]/50 dark:bg-[#1a2f2a]/50 backdrop-blur-md shadow-md">
-            <div className="max-w-6xl mx-auto flex items-center">
+        <nav className="w-full fixed top-0 z-50 py-4 bg-[#DDE5ED]/50 dark:bg-[#1a2f2a]/50 backdrop-blur-md shadow-md">
+            <div className="mx-auto flex w-full items-center px-8 md:max-w-4/5 md:px-12">
                 {/* Logo / Name */}
                 <div className="text-2xl font-bold text-[#92ACA0] flex-grow">
                     {/* night mode toggle */}
@@ -76,7 +76,7 @@ export default function Nav() {
             </div>
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden mt-2 space-y-2 text-base font-bold text-center dark:text-[#e8f0ee]">
+                <div className="md:hidden mt-2 space-y-2 text-base font-bold text-center dark:text-[#e8f0ee] px-8">
                     <a href="#about" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>About</a>
                     <a href="#experience" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>Experience</a>
                     <a href="#projects" className="block hover:text-[#92ACA0] transition" onClick={() => setIsOpen(false)}>Projects</a>

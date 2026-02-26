@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import Pagination from "../components/Pagination";
 import FilterBar from "../components/FilterBar";
+import BackButton from "../components/BackButton";
 
 const POSTS_PER_PAGE = 4;
 
@@ -131,11 +132,11 @@ const BlogPage = () => {
           onPageChange={setCurrentPage}
           variant="compact"
         />
-        <button
-            className='mt-8 px-10 py-2 bg-white dark:bg-[#243b35] border text-blue-600 dark:border-[#92ACA0] dark:text-[#92ACA0] rounded-lg hover:text-white hover:bg-blue-600 dark:hover:bg-[#92ACA0] dark:hover:text-white border-blue-600 transition'
-            onClick={() => navigate('/')}>
-            Go Back
-        </button>
+        <BackButton
+          label="Back home"
+          className="mt-8"
+          onClick={() => navigate('/')}
+        />
       </div>
     </div>
   );
