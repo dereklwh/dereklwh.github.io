@@ -31,7 +31,7 @@ const AboutSection = () => {
     
     const galleryImages = [
         { src: coffeeImage,  caption: "Where I learned to make a cortado under pressure." },
-        { src: canucksTeamPhoto, caption: "Turning hockey data into stories with the Canucks BI team." },
+        { src: canucksTeamPhoto, caption: "Turning business data into stories with the Canucks BI team." },
         { src: blueprintTeamPhoto, caption: "Shipping software that matters, with people who care." },
         // Add more images as needed
     ];

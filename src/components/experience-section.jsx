@@ -15,9 +15,9 @@ const ExperienceSection = () => {
             title: 'Software Developer Intern',
             time: 'Jan 2026 - Present',
             desc: 
-            'Delivered 15+ PRs across bug fixes, backend features, and UI improvements in a Django/Riot.js healthcare platform serving real clinics and patients\n' +
-            'Built an end-to-end fax invoicing feature including PDF generation, third-party API integrations, and webhook-driven communication pipelines\n' +
-            'Shipped production hotfixes and authored cron jobs, database migrations, and automated test suites within a trunk-based CI/CD workflow'
+            '- Shipped end-to-end features — fax invoicing (Telnyx API, PDF generation, webhooks), async CSV exports (Redis, threading), and automated patient feedback emails — in a multi-tenant Django healthcare platform\n' +
+            '- Delivered 20+ PRs across the full stack including bug fixes, frontend optimizations, cron jobs, data migrations, and EMR integration fixes (Oscar, Accuro)\n' +
+            '- Added to CODEOWNERS within 7 weeks; conducted peer code reviews, triaged production errors via Sentry, and demoed features to cross-functional stakeholders'
 
         },
         {
@@ -38,7 +38,7 @@ const ExperienceSection = () => {
           title: 'Data Analyst',
           time: 'Sep 2024 – Apr 2025',
           desc:
-            '- Automated post-game survey reporting (95% faster) and built DistilBERT model to classify fan feedback\n' +
+            '- Automated post-game survey reporting (95% faster) and built NLP pipeline with Hugging Face DistilBERT to classify 10,000+ fan survey responses\n' +
             '- Delivered PowerBI dashboards and visualized insights\n' +
             '- Fulfilled 100+ data requests across marketing, sales, and corporate partnerships using SQL and pandas\n' +
             '- Built Microsoft Fabric ETL pipelines with Python + various APIs for streamlined data analysis tasks'
