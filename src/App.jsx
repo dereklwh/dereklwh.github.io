@@ -11,6 +11,7 @@ import BlogPage from './pages/blog-page.jsx';
 import BlogPost from './pages/blog-post.jsx';
 import GalleryPage from './pages/gallery-page.jsx';
 import NotFoundPage from './pages/not-found-page.jsx';
+import BadmintonBudgetTracking from './pages/badminton-budget-tracking.jsx';
 import useCurrentlyReading from './hooks/useCurrentlyReading.js';
 
 function Home() {
@@ -137,6 +138,7 @@ function App() {
         <Route path='blog' element={<BlogPage />} />
         <Route path= 'blog/:slug' element={<BlogPost />} />
         <Route path='gallery' element={<GalleryPage />} />
+        <Route path='badminton-budget-tracking' element={<BadmintonBudgetTracking />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </Router>
