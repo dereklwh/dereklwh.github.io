@@ -1,74 +1,150 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-body {
-	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+@theme {
+  --color-sage: #92aca0;
+  --color-sage-deep: #6f8a84;
+  --color-ink: #3e5d58;
+  --color-mist: #dde5ed;
+  --color-paper: #f4f7f5;
+  --color-forest: #1a2f2a;
+  --color-forest-raised: #243b35;
+  --color-forest-line: #2f4f47;
+  --color-fog: #e8f0ee;
+  --color-fog-muted: #a3c4bc;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-fade-in: fade-in 0.5s ease-out both;
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased dark:bg-forest dark:text-fog;
+  }
+
+  /* soft sage glow + film grain behind everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 40rem at 85% -10%, color-mix(in oklab, var(--color-sage) 22%, transparent), transparent 70%),
+      radial-gradient(50rem 35rem at -10% 110%, color-mix(in oklab, var(--color-mist) 70%, transparent), transparent 70%);
+  }
+
+  .dark body::before {
+    background:
+      radial-gradient(60rem 40rem at 85% -10%, color-mix(in oklab, var(--color-sage) 14%, transparent), transparent 70%),
+      radial-gradient(50rem 35rem at -10% 110%, color-mix(in oklab, var(--color-forest-raised) 80%, transparent), transparent 70%);
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    @apply bg-sage/40;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-sage;
+  }
 }
 
 @layer components {
-  .prose h1 {
-    @apply text-4xl font-bold mb-10 text-center dark:text-[#e8f0ee];
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.18em] text-sage;
   }
 
-  .prose h2 {
-    @apply text-3xl font-semibold mt-6 mb-4 dark:text-[#e8f0ee];
+  .card {
+    @apply rounded-2xl border border-ink/10 bg-white/70 shadow-sm backdrop-blur-sm dark:border-fog/10 dark:bg-forest-raised/70;
   }
 
-  .prose h3 {
-    @apply text-2xl font-semibold mt-6 mb-4 dark:text-[#e8f0ee];
+  .chip {
+    @apply rounded-full border border-sage/30 bg-white/70 px-3 py-1 text-xs dark:bg-forest-raised;
   }
 
-  .prose ul {
-    @apply list-disc pl-6 space-y-2;
+  .tag {
+    @apply cursor-pointer rounded-full bg-sage/15 px-2.5 py-0.5 font-mono text-[11px] text-sage-deep transition-colors hover:bg-sage/30 dark:text-sage;
   }
 
-  .prose ol {
-    @apply list-decimal pl-6 space-y-2;
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-deep dark:bg-sage dark:text-forest dark:hover:bg-fog;
   }
 
-  .prose li {
-    @apply leading-relaxed dark:text-[#a3c4bc];
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium transition-colors hover:border-sage hover:bg-sage/15 dark:border-fog/20;
   }
-
-  .prose p {
-    @apply mb-4 leading-relaxed dark:text-[#a3c4bc];
-  }
-
-  .prose strong {
-    @apply font-bold text-[#92ACA0];
-  }
-
-  .prose pre {
-    @apply rounded mt-6 mb-4 px-6 py-6 text-sm font-mono
-    bg-gray-700 text-gray-100
-    dark:bg-gray-900/40 dark:text-gray-300;
-  }
-
-  .prose img {
-    @apply rounded-lg mt-6 mb-6 max-h-100 mx-auto;
-  }
-
-  .prose a {
-    @apply text-[#92ACA0] underline;
-  }
-
-  .prose blockquote {
-    @apply border-l-4 border-gray-500 pl-4 italic my-6;
-  }
-
-  
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Blog prose, layered on top of @tailwindcss/typography */
+.prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-links: var(--color-sage-deep);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-quotes: var(--color-ink);
+  --tw-prose-quote-borders: var(--color-sage);
+  --tw-prose-bullets: var(--color-sage);
+  --tw-prose-counters: var(--color-sage-deep);
+  --tw-prose-pre-bg: var(--color-forest);
+  --tw-prose-pre-code: var(--color-fog);
+  --tw-prose-invert-body: var(--color-fog-muted);
+  --tw-prose-invert-headings: var(--color-fog);
+  --tw-prose-invert-links: var(--color-sage);
+  --tw-prose-invert-bold: var(--color-fog);
+  --tw-prose-invert-quotes: var(--color-fog);
+  --tw-prose-invert-quote-borders: var(--color-sage);
+  --tw-prose-invert-bullets: var(--color-sage);
+  --tw-prose-invert-counters: var(--color-sage);
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 0.3);
+}
+
+.prose :where(h1, h2, h3) {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.prose :where(h1) {
+  display: none; /* title is rendered in the post header */
+}
+
+.prose :where(img) {
+  border-radius: 0.75rem;
+  max-height: 28rem;
+  margin-inline: auto;
+}
+
+.prose :where(a) {
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+}

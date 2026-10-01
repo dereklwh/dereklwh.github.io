@@ -1,5 +1,5 @@
 ---
-title: Highlights to my day today
+title: Highlights from my day
 date: 2026-01-23
 tags: life
 ---

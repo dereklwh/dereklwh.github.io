@@ -1,35 +1,55 @@
-import {useState, useEffect} from 'react';
-  
+import { useState, useEffect } from 'react';
+
+const CACHE_KEY = 'currently-reading';
+const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
+const FEED_URL = 'https://www.goodreads.com/review/list_rss/182676242-derek?shelf=currently-reading';
+
+function readCache() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+    if (cached && Date.now() - cached.savedAt < CACHE_TTL) return cached.book;
+  } catch {
+    // ignore bad or blocked storage
+  }
+  return null;
+}
+
 export default function useCurrentlyReading() {
-    const [book, setBook] = useState(null);
+  const [book, setBook] = useState(readCache);
 
-    useEffect(() => {
-        async function fetchCurrentlyReading() {
-            try {
-                const response = await fetch(
-                    "https://api.allorigins.win/raw?url=" +
-                      encodeURIComponent("https://www.goodreads.com/review/list_rss/182676242-derek?shelf=currently-reading")
-                );
-                const text = await response.text();
-                const parser = new DOMParser();
-                const xml = parser.parseFromString(text, "application/xml");
-                const item = xml.querySelector("item");
+  useEffect(() => {
+    if (book) return;
+    let cancelled = false;
 
-                if (item) {
-                    const title = item.querySelector("title").textContent;
-                    const link = item.querySelector("link").textContent;
-                    const image = item.querySelector("book_small_image_url").textContent;
-                    const author = item.querySelector("author_name").textContent;
-                    setBook({ title, link, image, author });
-                }
-                
-            }
-            catch (error) {
-                console.error("Error fetching currently reading book:", error);
-            }
+    async function fetchCurrentlyReading() {
+      try {
+        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(FEED_URL));
+        const text = await response.text();
+        const xml = new DOMParser().parseFromString(text, 'application/xml');
+        const item = xml.querySelector('item');
+        if (!item || cancelled) return;
+
+        const next = {
+          title: item.querySelector('title')?.textContent,
+          link: item.querySelector('link')?.textContent,
+          author: item.querySelector('author_name')?.textContent,
+        };
+        setBook(next);
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ book: next, savedAt: Date.now() }));
+        } catch {
+          // caching is optional
         }
-        fetchCurrentlyReading();
-    }, []);
+      } catch (error) {
+        console.error('Error fetching currently reading book:', error);
+      }
+    }
 
-    return book || null;
+    fetchCurrentlyReading();
+    return () => {
+      cancelled = true;
+    };
+  }, [book]);
+
+  return book;
 }

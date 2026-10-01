@@ -149,7 +149,7 @@ const BadmintonBudgetTracking = () => {
       <div className="max-w-2xl mx-auto p-10 text-[#3e5d58] dark:text-[#e8f0ee]">
         <h1 className="text-4xl mt-10 font-bold mb-2">Badminton Budget Tracker</h1>
         <p className="mb-6 text-lg text-[#3e5d58]/80 dark:text-[#a3c4bc]">
-          {PARTICIPANTS.join(", ")} — {formatMoney(PER_PERSON)} each per pool
+          {PARTICIPANTS.join(", ")}: {formatMoney(PER_PERSON)} each per pool
           ({formatMoney(POOL_TOTAL)} total).
         </p>
 
@@ -167,7 +167,7 @@ const BadmintonBudgetTracking = () => {
           </p>
           {balance <= 0 && (
             <p className="mt-2 text-sm font-medium text-[#A6192E]">
-              Pool empty — time to refresh.
+              Pool empty. Time to refresh.
             </p>
           )}
           <div className="mt-4 flex gap-6 text-sm text-[#3e5d58]/80 dark:text-[#a3c4bc]">
@@ -194,7 +194,7 @@ const BadmintonBudgetTracking = () => {
               {currentPool && (
                 <p className="text-sm text-[#3e5d58]/80 dark:text-[#a3c4bc]">
                   {allPaid
-                    ? "Fully funded — ready for a new pool"
+                    ? "Fully funded, ready for a new pool"
                     : `${paidCount} of ${PARTICIPANTS.length} paid in`}
                 </p>
               )}
@@ -220,8 +220,8 @@ const BadmintonBudgetTracking = () => {
           {currentPool && (
             <div className="mt-4 space-y-2">
               <p className="text-xs text-[#3e5d58]/70 dark:text-[#a3c4bc]">
-                Check each person once they&apos;ve paid their {formatMoney(PER_PERSON)} —
-                only confirmed contributions count toward the balance.
+                Check each person once they&apos;ve paid their {formatMoney(PER_PERSON)}.
+                Only confirmed contributions count toward the balance.
               </p>
               {PARTICIPANTS.map((name) => {
                 const paid = currentPool.paid?.[name];

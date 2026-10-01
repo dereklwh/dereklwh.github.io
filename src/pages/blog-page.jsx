@@ -1,145 +1,103 @@
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
-import Pagination from "../components/Pagination";
-import FilterBar from "../components/FilterBar";
-import BackButton from "../components/BackButton";
+import { useMemo } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Pagination from '../components/Pagination';
+import FilterBar from '../components/FilterBar';
+import posts from '../lib/posts.js';
+import { countTags } from '../lib/tags.js';
+import useTitle from '../hooks/useTitle.js';
 
-const POSTS_PER_PAGE = 4;
+const POSTS_PER_PAGE = 6;
+const allTags = countTags(posts);
 
 const BlogPage = () => {
-  const navigate = useNavigate();
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [activeTag, setActiveTag] = useState(null);
+  useTitle('Blog');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tagParam = searchParams.get('tag');
+  const activeTag = allTags.some((t) => t.name === tagParam) ? tagParam : null;
 
-  // Discover markdown files automatically
-  const postFiles = import.meta.glob("../blog/*.md");
+  const filteredPosts = useMemo(
+    () => (activeTag ? posts.filter((p) => p.tags.includes(activeTag)) : posts),
+    [activeTag]
+  );
 
-  // Convert object into array of filenames
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const postList = await Promise.all(
-        Object.keys(postFiles).map(async (path) => {
-          const fileName = path.split("/").pop().replace(".md", "");
-          const res = await postFiles[path]();
-          const text = await fetch(res.default).then((r) => r.text());
-          const { data, content } = parseFrontmatter(text);
-
-          return {
-            title: data.title || fileName.replace(/-/g, " "), // Use frontmatter title or fallback
-            date: data.date || "Unknown Date", // Use frontmatter date or fallback
-            slug: fileName,
-            content, // Store the Markdown content
-            tags: data.tags || []
-          };
-        })
-      );
-
-      postList.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-      });
-
-      setPosts(postList);
-    };
-
-    fetchPosts();
-  }, []);
-
-  function parseFrontmatter(text) {
-    const match = /^---\n([\s\S]*?)\n---/.exec(text);
-    if (!match) return { data: {}, content: text };
-  
-    const yaml = match[1];
-    const data = {};
-  
-    yaml.split("\n").forEach((line) => {
-      const [key, ...rest] = line.split(":");
-      if (!key) return;
-  
-      let value = rest.join(":").trim();
-  
-      // Convert array-style and comma-style tags into arrays
-      if (key.trim() === "tags") {
-        if (value.startsWith("[") && value.endsWith("]")) {
-          // tags: [one, two, three]
-          value = value.slice(1, -1);
-        }
-        data.tags = value.split(",").map((t) => t.trim()).filter(Boolean);
-      } else {
-        data[key.trim()] = value;
-      }
-    });
-  
-    const content = text.slice(match[0].length).trim();
-  
-    return { data, content };
-  }
-  
-
-  const uniqueTags = useMemo(() => {
-    const tagSet = new Set(posts.flatMap((p) => p.tags));
-    return [...tagSet];
-  }, [posts]);
-
-  const filteredPosts = useMemo(() => {
-    if (!activeTag) return posts;
-    return posts.filter((p) => p.tags.includes(activeTag));
-  }, [posts, activeTag]);
-
-  const handleTagChange = (tag) => {
-    setActiveTag(tag);
-    setCurrentPage(1);
-  };
-
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const currentPage = Math.min(Math.max(1, Number(searchParams.get('page')) || 1), totalPages);
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const paginatedPosts = filteredPosts.slice(startIndex, startIndex + POSTS_PER_PAGE);
 
+  const updateParams = (changes) => {
+    const next = new URLSearchParams(searchParams);
+    Object.entries(changes).forEach(([key, value]) => {
+      if (value == null || value === 1) next.delete(key);
+      else next.set(key, value);
+    });
+    setSearchParams(next, { replace: true });
+  };
+
   return (
-    <div className="bg-linear-65 from-white to-[#DDE5ED] dark:from-[#1a2f2a] dark:to-[#1a2f2a] min-h-screen">
-      <div className="max-w-2xl mx-auto p-10 text-[#3e5d58] dark:text-[#e8f0ee]">
-        <h1 className="text-4xl mt-10 font-bold mb-4">Blog</h1>
-        <p className='mb-6 text-lg'>just some thoughts</p>
-        <FilterBar tags={uniqueTags} activeTag={activeTag} onTagChange={handleTagChange} />
-        <div className="space-y-4">
-          {paginatedPosts.map((post) => (
-            <div
-              key={post.slug}
-              className="p-4 border rounded-lg hover:bg-gray-50 dark:border-[#2f4f47] dark:hover:bg-[#243b35] cursor-pointer transition-colors duration-200"
-              onClick={() => navigate(`/blog/${post.slug}`)}
-            >
-              <h2 className="text-xl font-semibold">{post.title}</h2>
-              <p className="text-sm text-gray-500 dark:text-[#a3c4bc]">{post.date}</p>
-              <div className="flex flex-wrap gap-1.5 mt-1">
-                {post.tags.map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={(e) => { e.stopPropagation(); handleTagChange(tag); }}
-                    className="px-2.5 py-0.5 text-xs rounded-full bg-[#92ACA0]/15 text-[#92ACA0] font-medium transition-all duration-200 hover:bg-[#92ACA0]/30 hover:scale-105 cursor-pointer"
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-              <p className="text-[#3e5d58] dark:text-[#92ACA0] mt-1">Read more →</p>
+    <div className="mx-auto max-w-3xl px-6 py-16">
+      <header className="mb-10">
+        <p className="eyebrow mb-3">Writing</p>
+        <h1 className="font-display text-6xl leading-none md:text-7xl">Blog</h1>
+        <p className="mt-4 text-lg text-ink/70 dark:text-fog/70">just some thoughts</p>
+      </header>
+
+      <FilterBar
+        id="blog"
+        tags={allTags}
+        total={posts.length}
+        activeTag={activeTag}
+        onTagChange={(tag) => updateParams({ tag, page: null })}
+      />
+
+      <motion.ol
+        key={`${activeTag}-${currentPage}`}
+        initial="hidden"
+        animate="show"
+        variants={{ show: { transition: { staggerChildren: 0.06 } } }}
+        className="divide-y divide-ink/10 border-y border-ink/10 dark:divide-fog/10 dark:border-fog/10"
+      >
+        {paginatedPosts.map((post) => (
+          <motion.li
+            key={post.slug}
+            variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+            className="group relative py-7"
+          >
+            <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-ink/60 dark:text-fog/60">
+              <time dateTime={post.date}>{post.displayDate}</time>
+              <span aria-hidden="true">·</span>
+              <span>{post.readingTime} min read</span>
             </div>
-          ))}
-        </div>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-          variant="compact"
-        />
-        <BackButton
-          label="Back home"
-          className="mt-8"
-          onClick={() => navigate('/')}
-        />
-      </div>
+            <h2 className="font-display text-3xl leading-tight transition-colors group-hover:text-sage-deep dark:group-hover:text-sage">
+              {/* stretched link makes the whole row clickable while tags stay separate buttons */}
+              <Link to={`/blog/${post.slug}`} className="after:absolute after:inset-0">
+                {post.title}
+              </Link>
+            </h2>
+            {post.excerpt && <p className="mt-2 line-clamp-2 text-ink/70 dark:text-fog/70">{post.excerpt}</p>}
+            <div className="relative mt-3 flex flex-wrap items-center gap-1.5">
+              {post.tags.map((tag) => (
+                <button key={tag} type="button" onClick={() => updateParams({ tag, page: null })} className="tag">
+                  {tag}
+                </button>
+              ))}
+              <span className="ml-auto font-mono text-xs text-sage-deep transition-transform group-hover:translate-x-1 dark:text-sage">
+                Read →
+              </span>
+            </div>
+          </motion.li>
+        ))}
+      </motion.ol>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={(page) => updateParams({ page })}
+        variant="compact"
+      />
     </div>
   );
 };
-  
-  export default BlogPage;
+
+export default BlogPage;
