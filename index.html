@@ -2,17 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/derek-notion-face.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Derek</title>
+    <title>Derek Huang</title>
+    <meta name="description" content="Derek Huang builds data-driven products for social impact. Studied business + computer science at SFU, now a software developer at Cortico Health." />
+    <link rel="canonical" href="https://derekhuang.xyz/" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="theme-color" content="#f4f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a2f2a" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Derek Huang" />
+    <meta property="og:title" content="Derek Huang" />
+    <meta property="og:description" content="I build data-driven products for social impact." />
+    <meta property="og:url" content="https://derekhuang.xyz/" />
+    <meta property="og:image" content="https://derekhuang.xyz/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Derek Huang" />
+    <meta name="twitter:description" content="I build data-driven products for social impact." />
+    <meta name="twitter:image" content="https://derekhuang.xyz/og.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   </head>
   <body>
     <script>
       (function() {
-        var saved = localStorage.getItem('theme');
-        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-        }
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
       })();
     </script>
     <div id="root"></div>

@@ -1,33 +1,41 @@
-const FilterBar = ({ tags, activeTag, onTagChange }) => {
+import { motion } from 'framer-motion';
+
+// `tags` is an array of { name, count }. `id` keeps the sliding highlight scoped per bar.
+const FilterBar = ({ id, tags, total, activeTag, onTagChange }) => {
+  const options = [{ name: null, label: 'All', count: total }, ...tags.map((t) => ({ ...t, label: t.name }))];
+
   return (
-    <div className="flex flex-wrap gap-2 mb-6">
-      <button
-        onClick={() => onTagChange(null)}
-        className={`
-          px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95
-          ${activeTag === null
-            ? 'bg-[#92ACA0] text-white shadow-md shadow-[#92ACA0]/30'
-            : 'border border-gray-300 dark:border-[#2f4f47] text-[#3e5d58] dark:text-[#a3c4bc] hover:bg-[#92ACA0]/20 hover:text-[#92ACA0]'
-          }
-        `}
-      >
-        All
-      </button>
-      {tags.map((tag) => (
-        <button
-          key={tag}
-          onClick={() => onTagChange(tag)}
-          className={`
-            px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95
-            ${activeTag === tag
-              ? 'bg-[#92ACA0] text-white shadow-md shadow-[#92ACA0]/30'
-              : 'border border-gray-300 dark:border-[#2f4f47] text-[#3e5d58] dark:text-[#a3c4bc] hover:bg-[#92ACA0]/20 hover:text-[#92ACA0]'
-            }
-          `}
-        >
-          {tag}
-        </button>
-      ))}
+    <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter by tag">
+      {options.map((option) => {
+        const isActive = activeTag === option.name;
+        return (
+          <button
+            key={option.label}
+            type="button"
+            onClick={() => onTagChange(option.name)}
+            aria-pressed={isActive}
+            className={`relative cursor-pointer rounded-full border px-3.5 py-1.5 text-sm transition-colors ${
+              isActive
+                ? 'border-transparent text-white dark:text-forest'
+                : 'border-ink/15 text-ink/80 hover:border-sage hover:text-ink dark:border-fog/15 dark:text-fog/80 dark:hover:text-fog'
+            }`}
+          >
+            {isActive && (
+              <motion.span
+                layoutId={`filter-active-${id}`}
+                className="absolute inset-0 rounded-full bg-ink dark:bg-sage"
+                transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+              />
+            )}
+            <span className="relative">
+              {option.label}
+              {option.count != null && (
+                <span className={`ml-1.5 font-mono text-[11px] ${isActive ? 'opacity-70' : 'text-sage'}`}>{option.count}</span>
+              )}
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 };
