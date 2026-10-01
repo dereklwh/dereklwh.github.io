@@ -5,7 +5,7 @@ tags: intro
 ---
 # Hello!
 
- Wecome to my first post. My name is Derek. My goal is 
+Welcome to my first post. My name is Derek. My goal for this blog:
 - React + Markdown
 - Welcome to my blog
 
