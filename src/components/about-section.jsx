@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaPython, FaReact, FaJava, FaJs, FaGitAlt, FaDatabase, FaMicrosoft, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
-import { SiFlask, SiCplusplus, SiTypescript, SiScikitlearn, SiTailwindcss, SiNeo4J, SiPandas, SiKotlin } from 'react-icons/si';
+import { SiDjango, SiFlask, SiCplusplus, SiTypescript, SiScikitlearn, SiTailwindcss, SiNeo4J, SiPandas, SiKotlin } from 'react-icons/si';
 import { HiOutlineMail } from 'react-icons/hi';
 import { IoDocumentText } from 'react-icons/io5';
 import coffeeImage from '../assets/coffee.jpg?w=1200&format=webp';
@@ -27,6 +27,7 @@ const skillGroups = [
     label: 'Frameworks',
     skills: [
       { name: 'React.js', icon: <FaReact /> },
+      { name: 'Django', icon: <SiDjango /> },
       { name: 'Flask', icon: <SiFlask /> },
       { name: 'TailwindCSS', icon: <SiTailwindcss /> },
     ],
