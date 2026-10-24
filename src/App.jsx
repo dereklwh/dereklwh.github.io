@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import Hero from './components/Hero.jsx';
 import SectionHeading from './components/SectionHeading.jsx';
@@ -59,7 +59,8 @@ function App() {
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path="badminton-budget-tracking" element={<Suspense fallback={null}><BadmintonBudgetTracking /></Suspense>} />
+        <Route path="bbt" element={<Suspense fallback={null}><BadmintonBudgetTracking /></Suspense>} />
+        <Route path="badminton-budget-tracking" element={<Navigate to="/bbt" replace />} />
       </Routes>
     </Router>
   );
