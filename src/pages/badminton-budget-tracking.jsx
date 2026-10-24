@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import BackButton from "../components/BackButton";
+import BbtAnalytics from "../components/BbtAnalytics";
 import useSheetSync from "../hooks/useSheetSync";
+import { CATEGORIES, PARTICIPANTS, PER_PERSON, formatMoney } from "../lib/bbtStats";
 
-const PARTICIPANTS = ["Derek", "Darren", "Jeffrey", "Jacob"];
-const PER_PERSON = 100;
 const POOL_TOTAL = PARTICIPANTS.length * PER_PERSON; // 400
 const STORAGE_KEY = "badminton-budget";
 
@@ -34,6 +34,26 @@ const loadState = () => {
   }
 };
 
+const inputClass =
+  "rounded-lg border border-[#92ACA0]/40 bg-white/70 dark:bg-[#1a2f2a]/40 px-3 py-2 focus:border-[#92ACA0] focus:outline-none";
+
+function CategorySelect({ value, onChange, className = "" }) {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className={`${inputClass} ${className}`}
+    >
+      <option value="">No category</option>
+      {CATEGORIES.map((c) => (
+        <option key={c} value={c}>
+          {c}
+        </option>
+      ))}
+    </select>
+  );
+}
+
 const SYNC_LABELS = {
   loading: "Loading from Google Sheets…",
   saving: "Saving to Google Sheets…",
@@ -42,15 +62,14 @@ const SYNC_LABELS = {
   unauthorized: "Google Sheets rejected the token",
 };
 
-const formatMoney = (n) =>
-  n.toLocaleString("en-US", { style: "currency", currency: "USD" });
-
 const BadmintonBudgetTracking = () => {
   const navigate = useNavigate();
   const [state, setState] = useState(loadState);
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(today);
+  const [category, setCategory] = useState("");
+  const [editing, setEditing] = useState(null);
   const { config: syncConfig, setConfig: setSyncConfig, status: syncStatus } =
     useSheetSync(state, setState);
   const [syncUrl, setSyncUrl] = useState(syncConfig?.url ?? "");
@@ -128,12 +147,45 @@ const BadmintonBudgetTracking = () => {
           amount: value,
           description: description.trim() || "Untitled expense",
           date: date || today(),
+          ...(category && { category }),
         },
       ],
     }));
     setAmount("");
     setDescription("");
     setDate(today());
+    setCategory("");
+  };
+
+  const startEditing = (expense) => {
+    setEditing({
+      id: expense.id,
+      amount: String(expense.amount),
+      description: expense.description,
+      date: expense.date,
+      category: expense.category ?? "",
+    });
+  };
+
+  const saveEdit = (e) => {
+    e.preventDefault();
+    const value = parseFloat(editing.amount);
+    if (!Number.isFinite(value) || value <= 0) return;
+    setState((prev) => ({
+      ...prev,
+      expenses: prev.expenses.map((expense) => {
+        if (expense.id !== editing.id) return expense;
+        const { category: _old, ...rest } = expense;
+        return {
+          ...rest,
+          amount: value,
+          description: editing.description.trim() || "Untitled expense",
+          date: editing.date || expense.date,
+          ...(editing.category && { category: editing.category }),
+        };
+      }),
+    }));
+    setEditing(null);
   };
 
   const deleteExpense = (id) => {
@@ -305,7 +357,7 @@ const BadmintonBudgetTracking = () => {
                 placeholder="Amount"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full rounded-lg border border-[#92ACA0]/40 bg-white/70 dark:bg-[#1a2f2a]/40 px-3 py-2 focus:border-[#92ACA0] focus:outline-none sm:w-32"
+                className={`${inputClass} w-full sm:w-32`}
                 required
               />
               <input
@@ -313,7 +365,7 @@ const BadmintonBudgetTracking = () => {
                 placeholder="Description (e.g. Court booking)"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full rounded-lg border border-[#92ACA0]/40 bg-white/70 dark:bg-[#1a2f2a]/40 px-3 py-2 focus:border-[#92ACA0] focus:outline-none"
+                className={`${inputClass} w-full`}
               />
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -321,7 +373,7 @@ const BadmintonBudgetTracking = () => {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full rounded-lg border border-[#92ACA0]/40 bg-white/70 dark:bg-[#1a2f2a]/40 px-3 py-2 focus:border-[#92ACA0] focus:outline-none sm:w-44"
+                className={`${inputClass} w-full sm:w-44`}
               />
               <button
                 type="submit"
@@ -330,6 +382,17 @@ const BadmintonBudgetTracking = () => {
                 Add expense
               </button>
             </div>
+            <details className="text-sm">
+              <summary className="cursor-pointer text-[#3e5d58]/70 dark:text-[#a3c4bc]">
+                Advanced settings
+              </summary>
+              <label className="mt-3 flex flex-col gap-1 sm:w-60">
+                <span className="text-xs text-[#3e5d58]/70 dark:text-[#a3c4bc]">
+                  Category (optional)
+                </span>
+                <CategorySelect value={category} onChange={setCategory} />
+              </label>
+            </details>
           </form>
         </div>
 
@@ -347,7 +410,67 @@ const BadmintonBudgetTracking = () => {
             </p>
           ) : (
             <ul className="space-y-2">
-              {sortedExpenses.map((e) => (
+              {sortedExpenses.map((e) =>
+                editing?.id === e.id ? (
+                  <li
+                    key={e.id}
+                    className="rounded-lg border border-[#92ACA0] px-4 py-3"
+                  >
+                    <form onSubmit={saveEdit} className="space-y-2">
+                      <div className="flex flex-col gap-2 sm:flex-row">
+                        <input
+                          type="number"
+                          inputMode="decimal"
+                          step="0.01"
+                          min="0"
+                          aria-label="Amount"
+                          value={editing.amount}
+                          onChange={(ev) => setEditing({ ...editing, amount: ev.target.value })}
+                          className={`${inputClass} w-full sm:w-28`}
+                          required
+                        />
+                        <input
+                          type="text"
+                          aria-label="Description"
+                          value={editing.description}
+                          onChange={(ev) =>
+                            setEditing({ ...editing, description: ev.target.value })
+                          }
+                          className={`${inputClass} w-full`}
+                        />
+                      </div>
+                      <div className="flex flex-col gap-2 sm:flex-row">
+                        <input
+                          type="date"
+                          aria-label="Date"
+                          value={editing.date}
+                          onChange={(ev) => setEditing({ ...editing, date: ev.target.value })}
+                          className={`${inputClass} w-full sm:w-44`}
+                        />
+                        <CategorySelect
+                          value={editing.category}
+                          onChange={(value) => setEditing({ ...editing, category: value })}
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="flex items-center gap-4 pt-1">
+                        <button
+                          type="submit"
+                          className="rounded-lg bg-[#92ACA0] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#6f8a84]"
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setEditing(null)}
+                          className="text-sm font-medium text-[#3e5d58]/60 transition-colors hover:text-[#3e5d58] dark:text-[#a3c4bc]"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  </li>
+                ) : (
                 <li
                   key={e.id}
                   className="flex items-center justify-between gap-3 rounded-lg border border-[#92ACA0]/30 px-4 py-2.5"
@@ -356,10 +479,22 @@ const BadmintonBudgetTracking = () => {
                     <p className="truncate font-medium">{e.description}</p>
                     <p className="text-xs text-[#3e5d58]/70 dark:text-[#a3c4bc]">
                       {e.date}
+                      {e.category && (
+                        <span className="ml-2 rounded-full bg-[#92ACA0]/15 px-2 py-0.5">
+                          {e.category}
+                        </span>
+                      )}
                     </p>
                   </div>
                   <div className="flex shrink-0 items-center gap-3">
                     <span className="font-semibold">−{formatMoney(e.amount)}</span>
+                    <button
+                      onClick={() => startEditing(e)}
+                      aria-label="Edit expense"
+                      className="text-[#3e5d58]/50 transition-colors hover:text-[#3e5d58] dark:text-[#a3c4bc] dark:hover:text-white"
+                    >
+                      ✎
+                    </button>
                     <button
                       onClick={() => deleteExpense(e.id)}
                       aria-label="Delete expense"
@@ -369,10 +504,18 @@ const BadmintonBudgetTracking = () => {
                     </button>
                   </div>
                 </li>
-              ))}
+                )
+              )}
             </ul>
           )}
         </div>
+
+        <BbtAnalytics
+          pools={pools}
+          expenses={expenses}
+          balance={balance}
+          className={`${cardClass} mb-6`}
+        />
 
         {/* Google Sheets sync */}
         <details className={`${cardClass} mb-6`}>
@@ -389,7 +532,7 @@ const BadmintonBudgetTracking = () => {
               placeholder="https://script.google.com/macros/s/…/exec"
               value={syncUrl}
               onChange={(e) => setSyncUrl(e.target.value)}
-              className="w-full rounded-lg border border-[#92ACA0]/40 bg-white/70 dark:bg-[#1a2f2a]/40 px-3 py-2 focus:border-[#92ACA0] focus:outline-none"
+              className={`${inputClass} w-full`}
               required
             />
             <input
@@ -398,7 +541,7 @@ const BadmintonBudgetTracking = () => {
               autoComplete="off"
               value={syncToken}
               onChange={(e) => setSyncToken(e.target.value)}
-              className="w-full rounded-lg border border-[#92ACA0]/40 bg-white/70 dark:bg-[#1a2f2a]/40 px-3 py-2 focus:border-[#92ACA0] focus:outline-none"
+              className={`${inputClass} w-full`}
               required
             />
             <div className="flex items-center gap-4">
