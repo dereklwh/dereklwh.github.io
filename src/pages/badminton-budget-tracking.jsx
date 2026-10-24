@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import BackButton from "../components/BackButton";
+import useSheetSync from "../hooks/useSheetSync";
 
 const PARTICIPANTS = ["Derek", "Darren", "Jeffrey", "Jacob"];
 const PER_PERSON = 100;
@@ -33,6 +34,14 @@ const loadState = () => {
   }
 };
 
+const SYNC_LABELS = {
+  loading: "Loading from Google Sheets…",
+  saving: "Saving to Google Sheets…",
+  synced: "Synced to Google Sheets",
+  error: "Couldn't reach Google Sheets, saved on this device",
+  unauthorized: "Google Sheets rejected the token",
+};
+
 const formatMoney = (n) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
 
@@ -42,6 +51,10 @@ const BadmintonBudgetTracking = () => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(today);
+  const { config: syncConfig, setConfig: setSyncConfig, status: syncStatus } =
+    useSheetSync(state, setState);
+  const [syncUrl, setSyncUrl] = useState(syncConfig?.url ?? "");
+  const [syncToken, setSyncToken] = useState(syncConfig?.token ?? "");
 
   useEffect(() => {
     document.title = "Badminton Budget Tracker | Derek Huang";
@@ -130,6 +143,19 @@ const BadmintonBudgetTracking = () => {
     }));
   };
 
+  const connectSync = (e) => {
+    e.preventDefault();
+    const url = syncUrl.trim();
+    const token = syncToken.trim();
+    if (url && token) setSyncConfig({ url, token });
+  };
+
+  const disconnectSync = () => {
+    setSyncConfig(null);
+    setSyncUrl("");
+    setSyncToken("");
+  };
+
   const resetAll = () => {
     if (window.confirm("Clear all pools and expenses? This cannot be undone.")) {
       setState({ pools: [], expenses: [] });
@@ -152,6 +178,17 @@ const BadmintonBudgetTracking = () => {
           {PARTICIPANTS.join(", ")}: {formatMoney(PER_PERSON)} each per pool
           ({formatMoney(POOL_TOTAL)} total).
         </p>
+        {syncStatus !== "off" && (
+          <p
+            className={`-mt-4 mb-6 text-xs ${
+              syncStatus === "error" || syncStatus === "unauthorized"
+                ? "text-[#A6192E]"
+                : "text-[#3e5d58]/60 dark:text-[#a3c4bc]"
+            }`}
+          >
+            {SYNC_LABELS[syncStatus]}
+          </p>
+        )}
 
         {/* Balance card */}
         <div className={`${cardClass} mb-6`}>
@@ -336,6 +373,53 @@ const BadmintonBudgetTracking = () => {
             </ul>
           )}
         </div>
+
+        {/* Google Sheets sync */}
+        <details className={`${cardClass} mb-6`}>
+          <summary className="cursor-pointer font-semibold">
+            Sync with Google Sheets
+          </summary>
+          <form onSubmit={connectSync} className="mt-4 space-y-3">
+            <p className="text-xs text-[#3e5d58]/70 dark:text-[#a3c4bc]">
+              Paste the Apps Script web app URL and token. They stay on this
+              device only.
+            </p>
+            <input
+              type="url"
+              placeholder="https://script.google.com/macros/s/…/exec"
+              value={syncUrl}
+              onChange={(e) => setSyncUrl(e.target.value)}
+              className="w-full rounded-lg border border-[#92ACA0]/40 bg-white/70 dark:bg-[#1a2f2a]/40 px-3 py-2 focus:border-[#92ACA0] focus:outline-none"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Token"
+              autoComplete="off"
+              value={syncToken}
+              onChange={(e) => setSyncToken(e.target.value)}
+              className="w-full rounded-lg border border-[#92ACA0]/40 bg-white/70 dark:bg-[#1a2f2a]/40 px-3 py-2 focus:border-[#92ACA0] focus:outline-none"
+              required
+            />
+            <div className="flex items-center gap-4">
+              <button
+                type="submit"
+                className="rounded-lg bg-[#92ACA0] px-4 py-2 font-semibold text-white transition-colors hover:bg-[#6f8a84]"
+              >
+                {syncConfig ? "Update" : "Connect"}
+              </button>
+              {syncConfig && (
+                <button
+                  type="button"
+                  onClick={disconnectSync}
+                  className="text-sm font-medium text-[#3e5d58]/60 transition-colors hover:text-[#A6192E] dark:text-[#a3c4bc]"
+                >
+                  Disconnect
+                </button>
+              )}
+            </div>
+          </form>
+        </details>
 
         <div className="flex items-center justify-between">
           <BackButton label="Back home" onClick={() => navigate("/")} />
